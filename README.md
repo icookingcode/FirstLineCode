@@ -1,6 +1,6 @@
 # FirstLineCode
 第一行代码（第三版）
-##kotlin学习要点
+## kotlin学习要点
 ### 函数式API(Lambda表达式)
 语法结构  
 ```
@@ -53,6 +53,13 @@ val result = obj.apply{
     //obj的上下文
 }
 //result == obj
+```
+* let  场景：使用方式同run，但不持有obj的上下文
+```
+val result = obj.let{
+    //将obj对象传入 以it 可调用
+    "value"  //最后一行是返回值
+}
 ```
 ### 定义静态方法
 * object 对象里的方法相当于静态方法

@@ -54,6 +54,14 @@ fun main(args: Array<String>) {
         }
     }
     println(res13.toString())
+
+    val res14 = StringBuilder().let {
+        for (i in list) {
+            it.append(i).append("\n")
+        }
+        it.toString()
+    }
+    println(res14)
 }
 
 fun plus3(a: Int, b: Int): Int {

@@ -5,34 +5,21 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.view.View.OnClickListener
 import com.guc.firstlinecode.base.BaseActivity
 import com.guc.firstlinecode.utils.ToastUtil
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity(), OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        button1.setOnClickListener {
-            val intent = Intent(this, SingleInstanceActivity::class.java)
-            startActivity(intent)
-        }
-
-        button2.setOnClickListener {
-            val intent = Intent("com.guc.firstlinecode.action.ACTION_FISRTACTIVITY")
-            startActivity(intent)
-        }
-
-        button3.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW)
-            intent.data = Uri.parse("https://www.baidu.com")
-            intent.addCategory(Intent.CATEGORY_BROWSABLE)
-            startActivity(intent)
-        }
-        button4.setOnClickListener {
-            DialogActivity.start(this)
-        }
+        button1.setOnClickListener(this)
+        button2.setOnClickListener(this)
+        button3.setOnClickListener(this)
+        button4.setOnClickListener(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -46,6 +33,20 @@ class MainActivity : BaseActivity() {
             R.id.remove_item -> ToastUtil.toast(this, "移除")
         }
         return true
+    }
+
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.button1 -> SingleInstanceActivity.start(this)
+            R.id.button2 -> startActivity(Intent("com.guc.firstlinecode.action.ACTION_FISRTACTIVITY"))
+            R.id.button3 -> {
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data = Uri.parse("https://www.baidu.com")
+                intent.addCategory(Intent.CATEGORY_BROWSABLE)
+                startActivity(intent)
+            }
+            R.id.button4 -> DialogActivity.start(this)
+        }
     }
 
 }
