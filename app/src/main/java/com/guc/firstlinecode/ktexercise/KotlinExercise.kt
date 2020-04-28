@@ -32,6 +32,28 @@ fun main(args: Array<String>) {
     val res10 = getUserInfo("lily", 29, "female", "America")
     println(res9)
     println(res10)
+
+    val list = listOf("Apple", "Banana", "Orange")
+    val res11 = with(StringBuilder()) {
+        for (i in list) {
+            append(i).append("\n")
+        }
+        toString()
+    }
+    println(res11)
+    val res12 = StringBuilder().run {
+        for (i in list) {
+            append(i).append("\n")
+        }
+        toString()
+    }
+    println(res12)
+    val res13 = StringBuilder().apply {
+        for (i in list) {
+            append(i).append("\n")
+        }
+    }
+    println(res13.toString())
 }
 
 fun plus3(a: Int, b: Int): Int {

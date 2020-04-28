@@ -8,4 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="MyDialog" parent="Theme.AppCompat.Light.Dialog">
+
+    </style>
 </resources>
