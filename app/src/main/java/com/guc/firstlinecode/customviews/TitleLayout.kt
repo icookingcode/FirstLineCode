@@ -17,6 +17,12 @@ class TitleLayout(context: Context, attrs: AttributeSet) : FrameLayout(context, 
     View.OnClickListener {
     var onMoreClicked: ((View?) -> Unit)? = null
 
+    var title: CharSequence = ""
+        set(value) {
+            titleText.setText(value)
+            field = value
+        }
+
     init {
         LayoutInflater.from(context).inflate(R.layout.layout_title, this)
         titleBack.setOnClickListener(this)

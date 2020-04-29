@@ -61,6 +61,12 @@ val result = obj.let{
     "value"  //最后一行是返回值
 }
 ```
+* repeat 常见：将一件事重复n遍执行
+```
+repeat(n){
+    //需重复执行的代码
+}
+```
 ### 定义静态方法
 * object 对象里的方法相当于静态方法
 ```
@@ -82,6 +88,33 @@ class Util{
 ```
 * 通过@JvmStatic注解定义(只能加在对象类 或伴生对象类中的方法上)
 * 顶层方法（类之外的方法）  
+### 关键字
+* 延时初始化 lateinit
+```
+class Demo{
+    private lateinit var param:String //延迟初始化
+    fun somemethod(){
+        if(!::param.isInitialized){  //::param.isInitialized 来判断是否初始化过
+            param = "HelloWorld"
+        }
+    }
+}
+```
+* 定义常量 const (const 只能在单例类、伴生对象或顶层方法中才能使用)
+* 密封类 sealed 好处：kotlin会自动检测密封类有哪些子类，并强制要求你将每个子类所对应的条件全部处理
+```
+//实现
+sealed class Base()
+class A :Base(){
+}
+class B :Base(){
+}
+//使用  不可能出现其他情况，必须实现Base所有子类所对应的条件
+when(base:Base){
+    A->...
+    B->...
+}
+```
 ## Android 
 ### Activity
 * menu 使用  

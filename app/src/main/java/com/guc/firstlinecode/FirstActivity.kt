@@ -27,5 +27,6 @@ class FirstActivity : BaseActivity() {
             val id = it?.id
             ToastUtil.toast(this, "点击了更多 viewId = $id")
         }
+        titleView.title = "UI"
     }
 }

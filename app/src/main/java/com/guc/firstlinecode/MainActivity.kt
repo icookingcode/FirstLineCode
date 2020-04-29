@@ -8,6 +8,8 @@ import android.view.MenuItem
 import android.view.View
 import android.view.View.OnClickListener
 import com.guc.firstlinecode.base.BaseActivity
+import com.guc.firstlinecode.ui.ListViewActivity
+import com.guc.firstlinecode.ui.RecyclerViewActivity
 import com.guc.firstlinecode.utils.ToastUtil
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -20,6 +22,8 @@ class MainActivity : BaseActivity(), OnClickListener {
         button2.setOnClickListener(this)
         button3.setOnClickListener(this)
         button4.setOnClickListener(this)
+        button5.setOnClickListener(this)
+        button6.setOnClickListener(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -46,6 +50,8 @@ class MainActivity : BaseActivity(), OnClickListener {
                 startActivity(intent)
             }
             R.id.button4 -> DialogActivity.start(this)
+            R.id.button5 -> ListViewActivity.start(this)
+            R.id.button6 -> RecyclerViewActivity.start(this)
         }
     }
 
