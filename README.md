@@ -154,3 +154,35 @@ intent.addCategory("category")  //添加category  (可选，若不添加默认 a
       <category android:name="category"/>
    </intent-filter>
 ```
+### Fragment
+1. 创建Fragment类，通过<fragment>标签的android:name属性插入xml布局文件中  
+2. 动态添加Fragment  
+```
+ private fun replaceFragment(
+        containerId: Int,   //容器id （一般用FrameLayout）
+        fragment: Fragment, //待添加的Fragment实例
+        isAddToBackStack: Boolean = false    //true:添加到返回栈，及点击返回键时可移除该Fragment
+    ) {
+        val fragmentManager = supportFragmentManager
+        val transaction = fragmentManager.beginTransaction()
+        transaction.replace(containerId, fragment)
+        if (isAddToBackStack) transaction.addToBackStack(null)
+        transaction.commit()
+ }
+```
+####限定符
+ * 大小
+    * small ：提供给小屏幕
+    * normal  ：提供给中等屏幕
+    * large ：提供给大屏幕
+    * xlarge  ：提供给超大屏幕
+    * sw600dp ：最小宽度限定
+ * 分辨率
+   * ldpi  :120dpi以下
+   * mdpi  ：120dpi-160dpi
+   * hdpi  : 160dpi-240dpi
+   * xhdpi  ：240dpi-320dpi
+   * xxhdpi  ：320dpi-480dpi
+ * 方向
+   * land  :提供给横屏设备
+   * port  :提供给竖屏设备
