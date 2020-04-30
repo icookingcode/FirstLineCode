@@ -220,3 +220,45 @@ intent.addCategory("category")  //添加category  (可选，若不添加默认 a
  * 方向
    * land  :提供给横屏设备
    * port  :提供给竖屏设备
+### 广播
+广播创建的两种方式：  
+1. 动态注册
+  * 创建IntentFilter 
+  * IntentFilter 添加需接收广播的action
+  * 创建广播接收器 class Receiver :BroadcastReceiver(){}
+  * 调用activity.registerReceiver 注册广播监听
+  * 使用完后调用 activity.unregisterReceiver  取消注册的广播接收器  
+2. 静态注册  
+需在manifest配置文件中进行接收器的配置  
+exported : true:表示允许接收本程序外的广播  
+enabled : true:表示启用该广播接受器  
+```
+ <receiver android:name=".receiver.BootCompleteReceiver"
+           android:exported="true"
+           android:enabled="true">
+           <intent-filter >
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+           </intent-filter>
+  </receiver>
+```
+3. 发送自定义广播
+创建广播接收器，并配置
+```
+  <receiver android:name=".receiver.MyBroadcastReceiver"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter android:priority="50">
+                <action android:name="com.guc.firstlinecode.action.MY_BROADCAST"/>  <!-- 自定义广播action-->
+            </intent-filter>
+  </receiver>
+  <!-- android:priority="50" 属性只对有序广播有效，数值越大，越先接收到广播-->
+```
+发送自定义广播     
+```
+        val intent = Intent("com.guc.firstlinecode.action.MY_BROADCAST")//创建指定action的Intent
+        intent.setPackage(packageName)  //Android 8.0后静态注册的Receiver无法收到隐式广播，需指定package（发给指定应用）后，才能收到
+        context.sendBroadcast(intent)
+    //  有序广播可在onReceive()方法中通过调用abortBroadcast()终止广播传递
+    //  context.sendOrderedBroadcast(intent,null)//发送有序广播
+
+```

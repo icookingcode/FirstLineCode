@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.BroadcastActivity">
+
+    <com.guc.firstlinecode.customviews.TitleLayout
+        android:id="@+id/titleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btnDynamicReceiver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="动态注册监听时间变化" />
+
+    <TextView
+        android:id="@+id/tvShow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btnSendBroadcast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="发送自定义广播" />
+
+    <Button
+        android:id="@+id/btnSendOrderBroadcast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="发送有序广播" />
+</LinearLayout>

@@ -3,6 +3,8 @@
     package="com.guc.firstlinecode">
     <!-- 网络权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <!--允许接收开机广播-->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.NewsActivity"></activity>
+        <activity android:name=".ui.BroadcastActivity" />
+        <activity android:name=".ui.NewsActivity" />
         <activity android:name=".ui.NewsContentActivity" />
         <activity android:name=".ui.FragmentDemo1Activity" />
         <activity android:name=".ui.FragmentDemo2Activity" />
@@ -49,6 +52,31 @@
         <activity
             android:name=".SingleInstanceActivity"
             android:launchMode="singleInstance" />
+
+        <receiver
+            android:name=".receiver.BootCompleteReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".receiver.MyBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter android:priority="100">
+                <action android:name="com.guc.firstlinecode.action.MY_BROADCAST" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".receiver.AnotherBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter android:priority="50">
+                <action android:name="com.guc.firstlinecode.action.MY_BROADCAST" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

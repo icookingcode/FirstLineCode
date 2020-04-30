@@ -26,6 +26,7 @@ class MainActivity : BaseActivity(), OnClickListener {
         button7.setOnClickListener(this)
         button8.setOnClickListener(this)
         button9.setOnClickListener(this)
+        button10.setOnClickListener(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -57,6 +58,7 @@ class MainActivity : BaseActivity(), OnClickListener {
             R.id.button7 -> FragmentDemo1Activity.start(this)
             R.id.button8 -> FragmentDemo2Activity.start(this)
             R.id.button9 -> NewsActivity.start(this)
+            R.id.button10 -> BroadcastActivity.start(this)
         }
     }
 
