@@ -115,6 +115,40 @@ when(base:Base){
     B->...
 }
 ```
+* 运算符重载 operator 重新定义运算符的含义，实现对象的运算
+```
+//定义重载运算符的对象类
+class Money(val value:Int){
+    operator fun plus(money:Money):Money{
+        val sum = value + money.value
+        return Money(sum)
+    }
+}
+```
+  * a+b  调用 a.plus(b)
+  * a-b  调用 a.minus(b)
+  * a*b  调用 a.times(b)
+  * a/b  调用 a.div(b)
+  * a%b  调用 a.rem(b)
+  * a++  调用 a.inc()
+  * a--  调用 a.dec()
+  * +av  调用 a.unaryPlus()
+  * -a   调用 a.unaryMinus()
+  * !a   调用 a.not()
+  * a==b | a>b | a<b 调用 a.equals(b)
+  * a>=b | a<=b  调用 a.compareTo(b)
+  * a..b  调用 a.rangeTo(b)
+  * a[b]  调用 a.get(b)
+  * a[b]=c  调用 a.set(b,c)
+  * a in b  调用 b.contains(a)
+### 扩展函数
+1. 扩展函数语法
+```
+fun ClassName.methodName(param1:Int, param2:Int):Int{
+        ...
+    return 0
+}
+```
 ## Android 
 ### Activity
 * menu 使用  

@@ -1,5 +1,6 @@
 package com.guc.firstlinecode.adapter.common
 
+import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
@@ -8,9 +9,11 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
  * Created by guc on 2020/4/29.
  * 描述：通用Rcv  可加载多种样式的Item
  */
-abstract class Commondapter4Rcv<T>(val datas: List<T>) :
+abstract class CommonAdapter4Rcv<T>(val datas: List<T>) :
     Adapter<ViewHolder4RecyclerView>() {
+    lateinit var context: Context
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder4RecyclerView {
+        context = parent.context
         return ViewHolder4RecyclerView(getRootView(parent, viewType))
     }
 

@@ -75,6 +75,15 @@
         android:layout_height="wrap_content"
         android:text="Fragment-限定符"
         app:layout_constraintLeft_toRightOf="@id/button7"
+        app:layout_constraintRight_toLeftOf="@id/button9"
+        app:layout_constraintTop_toBottomOf="@id/button6" />
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="简易新闻"
+        app:layout_constraintLeft_toRightOf="@id/button8"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button6" />
 

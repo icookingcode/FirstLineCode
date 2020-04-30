@@ -11,6 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.NewsActivity"></activity>
+        <activity android:name=".ui.NewsContentActivity" />
         <activity android:name=".ui.FragmentDemo1Activity" />
         <activity android:name=".ui.FragmentDemo2Activity" />
         <activity android:name=".ui.RecyclerViewActivity" />

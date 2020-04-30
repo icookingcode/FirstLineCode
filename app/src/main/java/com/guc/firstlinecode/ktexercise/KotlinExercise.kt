@@ -1,5 +1,7 @@
 package com.guc.firstlinecode.ktexercise
 
+import com.guc.firstlinecode.bean.Money
+
 /**
  * Created by guc on 2020/4/27.
  * 描述：基本语法练习
@@ -62,6 +64,10 @@ fun main(args: Array<String>) {
         it.toString()
     }
     println(res14)
+
+    val money1 = Money(5)
+    val money2 = Money(15)
+    println("+运算符重载 ： ${(money1 + money2).value}")
 }
 
 fun plus3(a: Int, b: Int): Int {
