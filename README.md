@@ -149,6 +149,47 @@ fun ClassName.methodName(param1:Int, param2:Int):Int{
     return 0
 }
 ```
+### 高阶函数
+如果一个函数接收另一个函数作为参数，或返回值是另一个函数，那么该函数就是高阶函数。  
+* 高阶函数
+```
+//定义高阶函数
+fun operation(p1: Int, p2: Int, lambda: (Int, Int) -> Int?): Int? {
+    return lambda(p1, p2)
+}
+
+//定义函数 加法
+val plus: (Int, Int) -> Int = { a: Int, b: Int -> a + b } //Lambda表达式
+//定义函数减法
+fun minus(a:Int,b: Int):Int{
+    return a-b
+}
+//使用
+val res = operation(5, 6, plus) //函数变量
+val res1 = operation(5,1,::minus) //::minus 表示函数引用
+val res2 = operation(5, 6) { p1, p2 -> p1 * p2 } //直接传入lambda表达式
+```
+* 内联函数(定义高阶函数时加上inline关键字声明即可)
+```
+//完全消除运行时开销
+inline fun operation(p1: Int, p2: Int, lambda: (Int, Int) -> Int?): Int? {
+    return lambda(p1, p2)
+}
+```
+* nionline与crossinline
+```
+//nionline 作用:内联高阶函数接收多个函数类型参数时，进行内联排除
+inline fun inlineTest(block1:()->Unit,noinline block2:()->Unit){
+}
+
+//crossinline 作用：相当于契约，保证高阶函数的匿名类实现中不允许使用return关键字进行函数返回
+inline fun runRunnable(crossinline block:()->Unit){//不使用crossinline，则会编译报错
+    val runnable = Runnable{
+        block()
+    }
+    runnable.run()
+}
+```
 ## Android 
 ### Activity
 * menu 使用  

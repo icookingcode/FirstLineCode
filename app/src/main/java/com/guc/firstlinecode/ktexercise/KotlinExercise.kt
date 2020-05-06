@@ -13,6 +13,10 @@ val division: (Int, Int) -> Int? = { a: Int, b: Int -> if (b == 0) null else a /
 
 val plus2 = { a: Int, b: Int -> a + b } //可省略类型
 
+fun minus(a: Int, b: Int): Int {
+    return a - b
+}
+
 fun main(args: Array<String>) {
     println("FirstLineCode")
     val res = plus(3, 4)
@@ -25,6 +29,8 @@ fun main(args: Array<String>) {
 
     val res6 = operation(5, 0, division)
     println("5/0 = $res6")
+    val res60 = operation(5, 1, ::minus)
+    println("5-1 = $res60")
 
     val res7 = getStringLength("guchao")
     val res8 = getStringLength(null)

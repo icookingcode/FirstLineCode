@@ -33,4 +33,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="发送有序广播" />
+    <Button
+        android:id="@+id/btnExit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="退出应用" />
 </LinearLayout>

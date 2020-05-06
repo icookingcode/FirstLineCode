@@ -29,6 +29,7 @@ class BroadcastActivity : BaseActivity(), View.OnClickListener {
         btnDynamicReceiver.setOnClickListener(this)
         btnSendBroadcast.setOnClickListener(this)
         btnSendOrderBroadcast.setOnClickListener(this)
+        btnExit.setOnClickListener(this)
     }
 
     override fun onClick(p0: View?) {
@@ -36,6 +37,7 @@ class BroadcastActivity : BaseActivity(), View.OnClickListener {
             R.id.btnDynamicReceiver -> createDynamicReceiver()
             R.id.btnSendBroadcast -> send()
             R.id.btnSendOrderBroadcast -> send(true)
+            R.id.btnExit -> sendBroadcast(Intent(MyAction.FORCE_OFFLINE))
         }
     }
 
