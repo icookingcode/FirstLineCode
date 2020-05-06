@@ -171,7 +171,7 @@ val res2 = operation(5, 6) { p1, p2 -> p1 * p2 } //直接传入lambda表达式
 ```
 * 内联函数(定义高阶函数时加上inline关键字声明即可)
 ```
-//完全消除运行时开销
+//完全消除Lambda表达式带来的运行时开销
 inline fun operation(p1: Int, p2: Int, lambda: (Int, Int) -> Int?): Int? {
     return lambda(p1, p2)
 }
@@ -245,7 +245,7 @@ intent.addCategory("category")  //添加category  (可选，若不添加默认 a
         transaction.commit()
  }
 ```
-####限定符
+#### 限定符
  * 大小
     * small ：提供给小屏幕
     * normal  ：提供给中等屏幕
@@ -303,3 +303,41 @@ enabled : true:表示启用该广播接受器
     //  context.sendOrderedBroadcast(intent,null)//发送有序广播
 
 ```
+### 数据存储
+3种数据持久化功能  
+* 文件存储  
+* SharedPreferences存储  
+* 数据库存储  
+1. 文件存储  
+通过context.openFileOutput(fileName,mode)/context.openFileInput(fileName)  
+默认存储路径：/data/data/<package name>/files/目录下  
+2. SharedPreferences存储  
+2.1 Context.getSharedPreferences()   路径：/data/data/<package name>/shared_prefs/目录下
+2.2 Activity.getPreferences()  自动以Activity的类名作为文件名进行存储
+实现步骤：  
+* 调用SharedPreferences对象的Editor 方法获取SharedPreferences.Editor对象
+* 向SharedPreferences.Editor对象中添加数据
+* 调用SharedPreferences.Editor对象的apply()方法  
+3. SQLite数据库  
+SQLite是一款轻量级的关系型数据库。  
+默认存储路径：/data/data/<package name>/databases/目录下  
+实现步骤：  
+ * 通过SQLiteOpenHelper创建SQLiteOpenHelper(dbHelper)对象
+ * 通过SQLiteDatabase db = dbHelper.getWritableDatabase()方法创建数据库（没有则创建）
+ * 通过SQLiteDatabase db实现数据库CRUD操作  
+   * 添加：insert(String table, String nullColumnHack, ContentValues values) ，使用ContentValues对数据进行封装插入数据库  
+   * 更新：update(String table, ContentValues values, String whereClause, String[] whereArgs)
+   * 删除：delete(String table, String whereClause, String[] whereArgs)   
+   * 查询： query(String table, String[] columns, String selection,
+                  String[] selectionArgs, String groupBy, String having,
+                  String orderBy)  
+ * 使用sql操作数据库
+   * 添加/更新/删除：db.execSQL(String sql,String[] args)  
+   * 查询：val cursor = db.rawQuery(String sql,String[] args)
+       ```
+       db.execSQL("insert into Book (name,author,pages,price) values (?,?,?,?)",arrayOf("西游记","吴承恩","999","48.5"))
+       db.execSQL("update Book set author =? ,pages=? where name=?",arrayOf("吴承恩","782","西游记"))
+       db.execSQL("delete from Book where pages > ?",arrayOf("500"))
+       db.rawQuery("select * from Book",null)
+       ```
+

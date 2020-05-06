@@ -18,6 +18,7 @@ open class BaseActivity : AppCompatActivity() {
     lateinit var receiver: ForceOfflineReceiver
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
         ActivityCollector.addActivity(this)
         LogG.logi("BaseActivity", "taskId : $taskId  ${javaClass.simpleName}")
     }
