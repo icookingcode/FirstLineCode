@@ -312,8 +312,8 @@ enabled : true:表示启用该广播接受器
 通过context.openFileOutput(fileName,mode)/context.openFileInput(fileName)  
 默认存储路径：/data/data/<package name>/files/目录下  
 2. SharedPreferences存储  
-2.1 Context.getSharedPreferences()   路径：/data/data/<package name>/shared_prefs/目录下
-2.2 Activity.getPreferences()  自动以Activity的类名作为文件名进行存储
+2.1 Context.getSharedPreferences()   路径：/data/data/<package name>/shared_prefs/目录下  
+2.2 Activity.getPreferences()  自动以Activity的类名作为文件名进行存储  
 实现步骤：  
 * 调用SharedPreferences对象的Editor 方法获取SharedPreferences.Editor对象
 * 向SharedPreferences.Editor对象中添加数据
@@ -340,4 +340,16 @@ SQLite是一款轻量级的关系型数据库。
        db.execSQL("delete from Book where pages > ?",arrayOf("500"))
        db.rawQuery("select * from Book",null)
        ```
+ * 数据库事务使用
+  ```
+    db.beginTransaction()//开启事务
+    try{
+        //block()
+        db.setTransactionSuccessful()//事务已执行成功
+    }catch(e:Exception){
+    }finally{
+        db.endTransaction()//结束事务
+    }
+    
+  ```
 

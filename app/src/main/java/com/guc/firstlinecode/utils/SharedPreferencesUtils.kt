@@ -2,6 +2,7 @@ package com.guc.firstlinecode.utils
 
 import android.content.Context
 import android.content.SharedPreferences
+import org.jetbrains.annotations.NotNull
 
 /**
  * Created by guc on 2020/5/6.
@@ -16,69 +17,36 @@ object SharedPreferencesUtils {
         editor = preferences.edit()
     }
 
-    fun putString(key: String, value: String) {
+    fun put(key: String, value: Any) {
         if (isInit()) {
-            editor.putString(key, value)
+            editor.put(key, value)
             editor.apply()
         } else {
             throw Exception("not init,please use SharedPreferencesUtils.init()")
         }
     }
 
-    fun getString(key: String): String? {
-        return preferences.getString(key, null)
-    }
-
-    fun putInt(key: String, value: Int) {
+    fun <T> getNotString(key: String, @NotNull default: T): T {
         if (isInit()) {
-            editor.putInt(key, value)
-            editor.apply()
+            return when (default) {
+                is Boolean -> preferences.getBoolean(key, default) as T
+                is Float -> preferences.getFloat(key, default) as T
+                is Int -> preferences.getInt(key, default) as T
+                is Long -> preferences.getLong(key, default) as T
+                null -> throw IllegalArgumentException("default value can not be null")
+                else -> preferences.getString(key, null) as T
+            }
         } else {
             throw Exception("not init,please use SharedPreferencesUtils.init()")
         }
     }
 
-    fun getInt(key: String, default: Int = 0): Int {
-        return preferences.getInt(key, default)
-    }
-
-    fun putBoolean(key: String, value: Boolean) {
+    fun getString(key: String, default: String? = null): String? {
         if (isInit()) {
-            editor.putBoolean(key, value)
-            editor.apply()
+            return preferences.getString(key, default)
         } else {
             throw Exception("not init,please use SharedPreferencesUtils.init()")
         }
-    }
-
-    fun getBoolean(key: String, default: Boolean = false): Boolean {
-        return preferences.getBoolean(key, default)
-    }
-
-    fun putFloat(key: String, value: Float) {
-        if (isInit()) {
-            editor.putFloat(key, value)
-            editor.apply()
-        } else {
-            throw Exception("not init,please use SharedPreferencesUtils.init()")
-        }
-    }
-
-    fun getFloat(key: String, default: Float = 0f): Float {
-        return preferences.getFloat(key, default)
-    }
-
-    fun putLong(key: String, value: Long) {
-        if (isInit()) {
-            editor.putLong(key, value)
-            editor.apply()
-        } else {
-            throw Exception("not init,please use SharedPreferencesUtils.init()")
-        }
-    }
-
-    fun getLong(key: String, default: Long = 0): Long {
-        return preferences.getLong(key, default)
     }
 
     fun clear() {

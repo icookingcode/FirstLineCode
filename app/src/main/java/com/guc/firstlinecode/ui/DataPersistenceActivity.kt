@@ -6,6 +6,7 @@ import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.contentValuesOf
 import com.guc.firstlinecode.R
 import com.guc.firstlinecode.base.BaseActivity
 import com.guc.firstlinecode.bean.Book
@@ -72,13 +73,16 @@ class DataPersistenceActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun saveString2Sp() {
-        SharedPreferencesUtils.putString("name", "谷超")
+        SharedPreferencesUtils.put("name", "谷超")
     }
 
     private fun getStringFromSp() {
-        val str = SharedPreferencesUtils.getString("name")
-        val str1 = SharedPreferencesUtils.getString("sex")
-        tvShow.text = "name = $str \nsex = $str1"
+        val str = SharedPreferencesUtils.getString("name", null)
+        val str1 = SharedPreferencesUtils.getString("sex", null)
+        val str2 = SharedPreferencesUtils.getNotString("age", 0)
+        tvShow.text = "name = $str \n" +
+                "sex = $str1 \n" +
+                "age = $str2"
     }
 
     private fun createDB() {
@@ -94,7 +98,14 @@ class DataPersistenceActivity : BaseActivity(), View.OnClickListener {
                 put("pages", 692)
                 put("price", 99.00)
             }
+            val value2 = contentValuesOf(
+                "name" to "西游记",
+                "author" to "吴承恩",
+                "pages" to "565",
+                "prices" to "48.5"
+            )
             sqLiteDatabase.insert(MyDatabaseHelper.TAB_BOOK, null, value1)
+            sqLiteDatabase.insert(MyDatabaseHelper.TAB_BOOK, null, value2)
 
         } else {
             ToastUtil.toast(this, "数据库尚未初始化")

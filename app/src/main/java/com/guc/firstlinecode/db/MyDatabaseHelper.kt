@@ -23,7 +23,8 @@ class MyDatabaseHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME
             "author text," +
             "price real," +
             "pages integer," +
-            "name text)"
+            "name text)," +
+            "category_id integer"
     private val createCategory = "create table $TAB_CATEGORY(" +
             "id integer primary key autoincrement," +
             "category_name text," +
@@ -36,8 +37,14 @@ class MyDatabaseHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME
     }
 
     override fun onUpgrade(p0: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-        p0.execSQL("drop table if exists Book")
-        p0.execSQL("drop table if exists Category")
-        onCreate(p0)
+//        p0.execSQL("drop table if exists Book")
+//        p0.execSQL("drop table if exists Category")
+//        onCreate(p0)
+        if (oldVersion <= 1) { //第二个版本添加分类表
+            p0.execSQL(createCategory)
+        }
+        if (oldVersion <= 2) {//第三个版本Book表添加category_id字段
+            p0.execSQL("alter table $TAB_BOOK add column category_id integer")
+        }
     }
 }
