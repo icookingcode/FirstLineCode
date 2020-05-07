@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.DataPersistenceActivity"></activity>
+        <activity android:name=".ui.DataPersistenceActivity" />
         <activity android:name=".ui.BroadcastActivity" />
         <activity android:name=".ui.NewsActivity" />
         <activity android:name=".ui.NewsContentActivity" />

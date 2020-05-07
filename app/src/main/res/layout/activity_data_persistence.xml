@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.DataPersistenceActivity">
+
+    <com.guc.firstlinecode.customviews.TitleLayout
+        android:id="@+id/titleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/etInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入内容" />
+
+    <Button
+        android:id="@+id/btnSave2File"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="保存到文件" />
+
+    <Button
+        android:id="@+id/btnReadFile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="读取文件" />
+
+    <TextView
+        android:id="@+id/tvShow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btnSp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="使用SharedPreferences保存数据" />
+
+    <Button
+        android:id="@+id/btnGetSpData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="获取SharedPreferences中数据" />
+
+    <Button
+        android:id="@+id/btnCreateDB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="创建数据库" />
+
+    <Button
+        android:id="@+id/btnAddBook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="添加一本书" />
+
+    <Button
+        android:id="@+id/btnQueryBook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="查询Book表" />
+
+
+</LinearLayout>
