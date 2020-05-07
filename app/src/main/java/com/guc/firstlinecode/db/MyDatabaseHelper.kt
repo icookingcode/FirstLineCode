@@ -23,8 +23,8 @@ class MyDatabaseHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME
             "author text," +
             "price real," +
             "pages integer," +
-            "name text)," +
-            "category_id integer"
+            "name text," +
+            "category_id integer)"
     private val createCategory = "create table $TAB_CATEGORY(" +
             "id integer primary key autoincrement," +
             "category_name text," +

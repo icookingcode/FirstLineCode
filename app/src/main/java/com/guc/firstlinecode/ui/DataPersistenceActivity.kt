@@ -102,7 +102,7 @@ class DataPersistenceActivity : BaseActivity(), View.OnClickListener {
                 "name" to "西游记",
                 "author" to "吴承恩",
                 "pages" to "565",
-                "prices" to "48.5"
+                "price" to "48.5"
             )
             sqLiteDatabase.insert(MyDatabaseHelper.TAB_BOOK, null, value1)
             sqLiteDatabase.insert(MyDatabaseHelper.TAB_BOOK, null, value2)

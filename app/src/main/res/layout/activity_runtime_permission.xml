@@ -16,4 +16,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="打电话tel:10086" />
+
+    <TextView
+        android:id="@+id/tvShow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="展示" />
+
+    <Button
+        android:id="@+id/btnPickPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="获取通讯录" />
+
+    <ListView
+        android:id="@+id/lvContacts"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 </LinearLayout>

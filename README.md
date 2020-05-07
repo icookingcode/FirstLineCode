@@ -394,6 +394,60 @@ ContextCompat.checkSelfPermission(this,Manifest.permission.CALL_PHONE)==PackageM
             }
         }
     }
+```  
+#### ContentResolver用法(访问其他程序的数据)
+* Content URI的标准格式  
+content://authority/path
 ```
-
-
+content://<package name>.provider/table
+```  
+* Context.getContentResolver获取ContentResolver对象
+```
+val contentResolver = context.getContentResolver()
+```
+* ContentResolver对象提供增删改查方法
+```
+//查询
+val cursor = contentResolver.query(
+    uri,//内容uri
+    projection,//查询列名
+    selection,//约束条件
+    selectionArgs,//占位符的值
+    sortOrder//排序方式
+  )
+//插入
+val values = contentValuesOf("column1" to "text" ,"column2" to "text")
+contentResolver.insert(uri,values)
+//更新
+contentResolver.update(uri,values,selection,selectionArgs)
+//删除
+contentResolver.delete(uri,selection,selectionArgs)
+```
+#### 创建ContentProvider
+1. 自定义class BookProvider : ContentProvider(){}，并实现其方法  
+2. 定义Uri   
+```
+content://com.guc.firstlinecode.provider/Book
+content://com.guc.firstlinecode.provider/Book/1
+```  
+  2.1 Uri通配符  
+ * &#42;表示匹配任意字符串  
+ * &#35;表示匹配任意长度的数字  
+3. 通过UriMather类实现匹配内容URI的功能
+  3.1 内容Uri的MIME类型定义
+ * 必须以vnd开头
+ * 内容uri以路径结尾，后接 android.cursor.dir/ ；内容以id结尾则后接 android.cursor.item/  
+ * 最后接上： vnd.<authority>.<path>
+ ```
+    vnd.android.cursor.dir/vnd.com.guc.firstlinecode.provider.Book}
+    vnd.android.cursor.item/vnd.com.guc.firstlinecode.provider.Book}
+ ```
+4. 结合数据库SQLiteOpenHelper对象实现增删改成操作
+5. Manifest配置该BookProvider
+```
+<provider
+     android:authorities="com.guc.firstlinecode.provider"
+     android:name=".provider.BookProvider"
+     android:enabled="true"
+     android:exported="true"/>
+```  
