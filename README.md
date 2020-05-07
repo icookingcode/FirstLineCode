@@ -352,4 +352,48 @@ SQLite是一款轻量级的关系型数据库。
     }
     
   ```
+### ContentProvider (跨程序共享数据)
+####运行时权限
+* CALENDAR  日历权限
+* CAMERA  相机权限
+* CONTACTS 通讯录
+* LOCATION 位置权限
+* MICROPHONE 录音权限
+* PHONE 打电话权限
+* SENSORS 传感器权限
+* SMS  短信权限
+* STORAGE 存储权限  
+1. ContextCompat.checkSelfPermission()检测是否有某个权限
+```
+//检测是否有打电话权限
+ContextCompat.checkSelfPermission(this,Manifest.permission.CALL_PHONE)==PackageManager.PERMISSION_GRANTED
+```
+2.  ActivityCompat.requestPermissions(activity,permissions,requestCode) 申请权限
+```
+//申请打电话权限
+ ActivityCompat.requestPermissions(
+                this, arrayOf(Manifest.permission.CALL_PHONE),
+                REQUEST_CODE
+            )
+```
+3. override fun onRequestPermissionsResult() 处理申请结构
+```
+ override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when(requestCode){
+            REQUEST_CODE->{
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    call()
+                }else{
+                    ToastUtil.toast(this,"你拒绝了该权限")
+                }
+            }
+        }
+    }
+```
+
 
