@@ -169,7 +169,8 @@ val res = operation(5, 6, plus) //函数变量
 val res1 = operation(5,1,::minus) //::minus 表示函数引用
 val res2 = operation(5, 6) { p1, p2 -> p1 * p2 } //直接传入lambda表达式
 ```
-* 内联函数(定义高阶函数时加上inline关键字声明即可)
+* 内联函数(定义高阶函数时加上inline关键字声明即可)  
+注意：内联函数可通过return进行函数返回，非内联函数只可通过return进行局部返回。  
 ```
 //完全消除Lambda表达式带来的运行时开销
 inline fun operation(p1: Int, p2: Int, lambda: (Int, Int) -> Int?): Int? {
@@ -188,6 +189,82 @@ inline fun runRunnable(crossinline block:()->Unit){//不使用crossinline，则�
         block()
     }
     runnable.run()
+}
+```
+### 泛型
+* 定义泛型类
+```
+//类名后使用<>声明泛型
+class MyClass<T>{
+    fun method(param:T):T{
+        return param
+    }
+}
+
+//调用
+val myClass = MyClass<Int>()
+val result = myClass.method(110)
+```  
+* 定义泛型方法
+```
+//方法名前使用<> 声明泛型方法
+fun <T> method(param:T):T{
+    return param
+}
+
+//调用
+val result = method<Int>(110)
+```
+* 对泛型类型进行约束
+```
+fun <T:Number> method(param:T){
+    return param
+}
+```
+### 委托
+* 类委托  
+精髓：将一个类的具体实现委托给另一个类去完成  
+```
+//创建接口
+interface Base{
+    fun print()
+}
+//创建被委托的类
+class BaseImpl(val x: Int) : Base {
+    override fun print() { print(x) }
+}
+// 通过关键字 by 建立委托类
+class Derived(b: Base) : Base by b
+
+fun main(args:Array<String>){
+    val b = BaseImpl(110)
+    Derived(b).print() // 输出 110
+}
+```
+* 属性委托  
+```
+/**
+ * Created by guc on 2020/5/7.
+ * 描述：属性委托
+ */
+class Delegate {
+    var propValue:Any? = "default"
+
+    /**
+     * [any] 指定任何类都可以使用该代理
+     * [prop] 属性操作类，可获取各种属性相关的值
+     */
+    operator fun getValue(any: Any?,prop:KProperty<*>):Any?{
+        return propValue
+    }
+    /**
+     * [any] 指定任何类都可以使用该代理
+     * [prop] 属性操作类，可获取各种属性相关的值
+     * [value] 赋给委托属性的值
+     */
+    operator fun setValue(any: Any?,prop:KProperty<*>,value:Any?){
+        propValue = value
+    }
 }
 ```
 ## Android 
@@ -376,7 +453,7 @@ ContextCompat.checkSelfPermission(this,Manifest.permission.CALL_PHONE)==PackageM
                 REQUEST_CODE
             )
 ```
-3. override fun onRequestPermissionsResult() 处理申请结构
+3. override fun onRequestPermissionsResult() 处理申请结果
 ```
  override fun onRequestPermissionsResult(
         requestCode: Int,

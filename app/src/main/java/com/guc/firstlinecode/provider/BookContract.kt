@@ -11,8 +11,8 @@ import com.guc.firstlinecode.db.MyDatabaseHelper
 class BookContract {
     companion object {
         const val AUTHORITY = "com.guc.firstlinecode.provider"
-        val AUTHORITY_URI = Uri.parse("content://$AUTHORITY")
-        val CONTENT_URI = Uri.withAppendedPath(AUTHORITY_URI, MyDatabaseHelper.TAB_BOOK)
+        private val AUTHORITY_URI = Uri.parse("content://$AUTHORITY")
+        val CONTENT_URI: Uri = Uri.withAppendedPath(AUTHORITY_URI, MyDatabaseHelper.TAB_BOOK)
         const val BOOK_DIR = 0
         const val BOOK_ITEM = 1
         const val BOOK_NAME = "name"

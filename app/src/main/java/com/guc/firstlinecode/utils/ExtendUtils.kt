@@ -2,6 +2,7 @@ package com.guc.firstlinecode.utils
 
 import android.content.ContentValues
 import android.content.SharedPreferences
+import kotlin.reflect.KProperty
 
 /**
  * Created by guc on 2020/5/6.
@@ -41,4 +42,24 @@ fun SharedPreferences.Editor.put(key: String, value: Any): SharedPreferences.Edi
         is Long -> putLong(key, value)
     }
     return this
+}
+
+//作用等同于obj.apply{}
+inline fun <T> T.build(block: T.() -> Unit): T {
+    block()
+    return this
+}
+
+//作用等同于 by lazy
+//不完善，项目中懒加载还使用by lazy
+fun <T> later(block: () -> T) = Later(block)
+
+class Later<T>(val block: () -> T) {
+    var value: Any? = null
+    operator fun getValue(any: Any?, prop: KProperty<*>): T {
+        if (value == null) {
+            value = block()
+        }
+        return value as T
+    }
 }

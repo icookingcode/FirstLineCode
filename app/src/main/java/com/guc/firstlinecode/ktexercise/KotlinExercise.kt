@@ -1,6 +1,7 @@
 package com.guc.firstlinecode.ktexercise
 
 import com.guc.firstlinecode.bean.Money
+import com.guc.firstlinecode.utils.later
 
 /**
  * Created by guc on 2020/4/27.
@@ -12,6 +13,11 @@ val plus: (Int, Int) -> Int = { a: Int, b: Int -> a + b } //Lambda表达式
 val division: (Int, Int) -> Int? = { a: Int, b: Int -> if (b == 0) null else a / b }
 
 val plus2 = { a: Int, b: Int -> a + b } //可省略类型
+
+val name by later {
+    println("block start")
+    "谷超"
+}
 
 fun minus(a: Int, b: Int): Int {
     return a - b
@@ -74,6 +80,9 @@ fun main(args: Array<String>) {
     val money1 = Money(5)
     val money2 = Money(15)
     println("+运算符重载 ： ${(money1 + money2).value}")
+
+    println(name)
+    println(name)
 }
 
 fun plus3(a: Int, b: Int): Int {
