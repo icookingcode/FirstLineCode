@@ -1,6 +1,7 @@
 package com.guc.firstlinecode.utils
 
 import android.content.Context
+import android.content.res.AssetManager
 import java.io.*
 
 /**
@@ -48,6 +49,26 @@ object FileUtils {
         } catch (e: IOException) {
             e.printStackTrace()
             "IOException"
+        } catch (e: FileNotFoundException) {
+            e.printStackTrace()
+            "FileNotFoundException"
+        }
+    }
+
+    /**
+     * 读取Assets下文件
+     */
+    fun readAssets2String(assetManager: AssetManager, fileName: String): String {
+        return try {
+            val content = java.lang.StringBuilder()
+            val inputStream = assetManager.open(fileName)
+            val reader = BufferedReader(InputStreamReader(inputStream))
+            reader.use {//kotlin内置的扩展函数，保证lambda表达式中代码执行完毕后自动关闭外层的数据流
+                reader.forEachLine {
+                    content.append(it)
+                }
+            }
+            content.toString()
         } catch (e: FileNotFoundException) {
             e.printStackTrace()
             "FileNotFoundException"

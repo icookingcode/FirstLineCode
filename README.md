@@ -429,6 +429,7 @@ SQLite是一款轻量级的关系型数据库。
     }
     
   ```
+![相关目录](https://github.com/icookingcode/FirstLineCode/blob/master/snapshoot/Snapshoot_20200508164848.png)
 ### ContentProvider (跨程序共享数据)
 #### 运行时权限
 * CALENDAR  日历权限
@@ -586,4 +587,11 @@ startActivityForResult(intent, REQUEST_CODE)
  intent.type="image/*"
  startActivityForResult(intent, REQUEST_CODE)
 ```
+#### 播放音频视频
+* 播放音频 
+  * 使用MediaPlayer播放音频（音频资源可放到main/assets目录  
+  * 使用AssetManager来读取assets目录下的资源
+  * 释放mediaPlayer资源（mediaPlayer.stop() mediaPlayer.release()）  
+
+
 

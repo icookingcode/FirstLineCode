@@ -36,6 +36,7 @@ class DataPersistenceActivity : BaseActivity(), View.OnClickListener {
         SharedPreferencesUtils.init(this, "data")
         btnSave2File.setOnClickListener(this)
         btnReadFile.setOnClickListener(this)
+        btnReadAssetsFile.setOnClickListener(this)
         btnSp.setOnClickListener(this)
         btnGetSpData.setOnClickListener(this)
         btnCreateDB.setOnClickListener(this)
@@ -48,6 +49,7 @@ class DataPersistenceActivity : BaseActivity(), View.OnClickListener {
         when (p0?.id) {
             R.id.btnSave2File -> saveString()
             R.id.btnReadFile -> readString()
+            R.id.btnReadAssetsFile -> readAssetsString()
             R.id.btnSp -> saveString2Sp()
             R.id.btnGetSpData -> getStringFromSp()
             R.id.btnCreateDB -> createDB()
@@ -68,6 +70,12 @@ class DataPersistenceActivity : BaseActivity(), View.OnClickListener {
 
     private fun readString() {
         val str = FileUtils.readFile2String(this, "file.txt")
+        etInput.setText(str)
+        etInput.setSelection(str.length)
+    }
+
+    private fun readAssetsString() {
+        val str = FileUtils.readAssets2String(assets, "demo.txt")
         etInput.setText(str)
         etInput.setSelection(str.length)
     }
