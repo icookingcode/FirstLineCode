@@ -577,4 +577,13 @@ intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
 startActivityForResult(intent, REQUEST_CODE)
 ```  
 说明：android 7.0及以上文件的uri需要通过FileProvider获取  
+* 系统相册
+```
+ //打开文件选择器
+ val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+ intent.addCategory(Intent.CATEGORY_OPENABLE)
+ //指定只显示图片
+ intent.type="image/*"
+ startActivityForResult(intent, REQUEST_CODE)
+```
 

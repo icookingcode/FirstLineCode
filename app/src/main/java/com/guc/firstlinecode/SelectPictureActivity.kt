@@ -20,6 +20,7 @@ class SelectPictureActivity : BaseActivity(), View.OnClickListener {
         const val DATA_URI = "data_uri"
         const val DATA_PATH = "data_path"
         private const val REQUEST_CODE_TAKE_PHOTO = 1001
+        private const val REQUEST_CODE_ALBUM = 1002
         fun start(context: Activity) {
             context.startActivityForResult(
                 Intent(context, SelectPictureActivity::class.java),
@@ -64,11 +65,19 @@ class SelectPictureActivity : BaseActivity(), View.OnClickListener {
                     intent.putExtra(DATA_URI, imageUri)
                     intent.putExtra(DATA_PATH, outputImage.absolutePath)
                     setResult(Activity.RESULT_OK, intent)
-                    this.finish()
+
                 } else {
                     outputImage.delete()
-                    finish()
                 }
+                this.finish()
+            }
+            REQUEST_CODE_ALBUM -> {
+                if (resultCode == Activity.RESULT_OK && data != null) {
+                    val uri = data.data
+                    intent.putExtra(DATA_URI, uri)
+                    setResult(Activity.RESULT_OK, intent)
+                }
+                finish()
             }
         }
 
@@ -92,6 +101,12 @@ class SelectPictureActivity : BaseActivity(), View.OnClickListener {
 
     //选相册
     private fun selectAlbum() {
+        //打开文件选择器
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+        intent.addCategory(Intent.CATEGORY_OPENABLE)
+        //指定只显示图片
+        intent.type = "image/*"
+        startActivityForResult(intent, REQUEST_CODE_ALBUM)
     }
 
     //获取文件名

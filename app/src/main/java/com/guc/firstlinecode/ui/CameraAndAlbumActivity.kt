@@ -4,10 +4,12 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import com.guc.firstlinecode.R
 import com.guc.firstlinecode.SelectPictureActivity
 import com.guc.firstlinecode.base.BaseActivity
+import com.guc.firstlinecode.utils.ImageUtils
 import kotlinx.android.synthetic.main.activity_camera_and_album.*
 
 class CameraAndAlbumActivity : BaseActivity() {
@@ -32,10 +34,21 @@ class CameraAndAlbumActivity : BaseActivity() {
             SelectPictureActivity.REQUEST_CODE -> {
                 if (resultCode == Activity.RESULT_OK) {
                     val imageUri = data?.extras?.get(SelectPictureActivity.DATA_URI)
-                    val filePath = data?.extras?.get(SelectPictureActivity.DATA_PATH) as String
+                    val filePath = data?.extras?.get(SelectPictureActivity.DATA_PATH)
                     if (filePath != null) {
-                        val bitmap = BitmapFactory.decodeFile(filePath)
-                        ivShow.setImageBitmap(bitmap)
+                        val bitmap = BitmapFactory.decodeFile(filePath as String)
+                        ivShow.setImageBitmap(ImageUtils.rotateBitmapIfRequired(filePath, bitmap))
+                    } else {
+                        if (imageUri != null) {
+                            imageUri as Uri
+                            ivShow.setImageBitmap(
+                                ImageUtils.getBitmapFromUri(
+                                    imageUri,
+                                    contentResolver
+                                )
+                            )
+                        }
+
                     }
                 }
             }

@@ -1,8 +1,11 @@
 package com.guc.firstlinecode.utils
 
+import android.content.ContentResolver
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.media.ExifInterface
+import android.net.Uri
 
 /**
  * Created by guc on 2020/5/8.
@@ -33,4 +36,12 @@ object ImageUtils {
         bitmap.recycle()
         return rotateBitmap
     }
+
+    /**
+     * 从图片uri获取bitmap
+     */
+    fun getBitmapFromUri(uri: Uri, contentResolver: ContentResolver) =
+        contentResolver.openFileDescriptor(uri, "r")?.use {
+            BitmapFactory.decodeFileDescriptor(it.fileDescriptor)
+        }
 }
