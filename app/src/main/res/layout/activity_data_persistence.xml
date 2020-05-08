@@ -35,6 +35,12 @@
         android:layout_height="wrap_content"
         android:text="读取Assets目录下文件" />
 
+    <Button
+        android:id="@+id/btnReadRawFile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="通过id读取Raw目录下文件" />
+
     <TextView
         android:id="@+id/tvShow"
         android:layout_width="match_parent"

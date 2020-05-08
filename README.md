@@ -592,6 +592,11 @@ startActivityForResult(intent, REQUEST_CODE)
   * 使用MediaPlayer播放音频（音频资源可放到main/assets目录  
   * 使用AssetManager来读取assets目录下的资源
   * 释放mediaPlayer资源（mediaPlayer.stop() mediaPlayer.release()）  
+* 播放视频
+  * 使用VideoView播放视频(视频资源放在res/raw目录下)
+  ```
+  VideoView.setVideoUri(Uri.parse("android.resource://" + getpackageName() + "/" + R.raw.movie));
+  ```
 
 
 

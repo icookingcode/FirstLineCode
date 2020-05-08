@@ -2,6 +2,7 @@ package com.guc.firstlinecode.utils
 
 import android.content.Context
 import android.content.res.AssetManager
+import com.guc.firstlinecode.R
 import java.io.*
 
 /**
@@ -72,6 +73,50 @@ object FileUtils {
         } catch (e: FileNotFoundException) {
             e.printStackTrace()
             "FileNotFoundException"
+        }
+    }
+
+    /**
+     * 读取Assets下文件
+     */
+    fun readRaw2String(context: Context, rawResId: Int): String {
+        return try {
+            val content = java.lang.StringBuilder()
+            val inputStream = context.resources.openRawResource(rawResId)
+            val reader = BufferedReader(InputStreamReader(inputStream))
+            reader.use {//kotlin内置的扩展函数，保证lambda表达式中代码执行完毕后自动关闭外层的数据流
+                reader.forEachLine {
+                    content.append(it)
+                }
+            }
+            content.toString()
+        } catch (e: FileNotFoundException) {
+            e.printStackTrace()
+            "FileNotFoundException"
+        }
+    }
+
+    /**
+     * 读取Assets下文件
+     */
+    fun readRaw2String(context: Context, rawName: String): String {
+        return try {
+            val content = java.lang.StringBuilder()
+            val field = R.raw::class.java.getField(rawName)
+            val inputStream = context.resources.openRawResource(field.getInt(null))
+            val reader = BufferedReader(InputStreamReader(inputStream))
+            reader.use {//kotlin内置的扩展函数，保证lambda表达式中代码执行完毕后自动关闭外层的数据流
+                reader.forEachLine {
+                    content.append(it)
+                }
+            }
+            content.toString()
+        } catch (e: FileNotFoundException) {
+            e.printStackTrace()
+            "FileNotFoundException"
+        } catch (e: NoSuchFieldException) {
+            e.printStackTrace()
+            "NoSuchFieldException"
         }
     }
 }

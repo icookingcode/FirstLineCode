@@ -37,6 +37,7 @@ class DataPersistenceActivity : BaseActivity(), View.OnClickListener {
         btnSave2File.setOnClickListener(this)
         btnReadFile.setOnClickListener(this)
         btnReadAssetsFile.setOnClickListener(this)
+        btnReadRawFile.setOnClickListener(this)
         btnSp.setOnClickListener(this)
         btnGetSpData.setOnClickListener(this)
         btnCreateDB.setOnClickListener(this)
@@ -50,6 +51,7 @@ class DataPersistenceActivity : BaseActivity(), View.OnClickListener {
             R.id.btnSave2File -> saveString()
             R.id.btnReadFile -> readString()
             R.id.btnReadAssetsFile -> readAssetsString()
+            R.id.btnReadRawFile -> readRawFile(name = "demo")
             R.id.btnSp -> saveString2Sp()
             R.id.btnGetSpData -> getStringFromSp()
             R.id.btnCreateDB -> createDB()
@@ -76,6 +78,18 @@ class DataPersistenceActivity : BaseActivity(), View.OnClickListener {
 
     private fun readAssetsString() {
         val str = FileUtils.readAssets2String(assets, "demo.txt")
+        etInput.setText(str)
+        etInput.setSelection(str.length)
+    }
+
+    private fun readRawFile(name: String? = null, id: Int? = null, isId: Boolean = false) {
+        val str = isId.let {
+            if (it) {
+                if (id != null) FileUtils.readRaw2String(this, id) else ""
+            } else {
+                if (name != null) FileUtils.readRaw2String(this, name) else ""
+            }
+        }
         etInput.setText(str)
         etInput.setSelection(str.length)
     }
