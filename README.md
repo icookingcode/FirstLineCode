@@ -510,7 +510,7 @@ content://com.guc.firstlinecode.provider/Book/1
   2.1 Uri通配符  
  * &#42;表示匹配任意字符串  
  * &#35;表示匹配任意长度的数字  
-3. 通过UriMather类实现匹配内容URI的功能
+3. 通过UriMather类实现匹配内容URI的功能  
   3.1 内容Uri的MIME类型定义
  * 必须以vnd开头
  * 内容uri以路径结尾，后接 android.cursor.dir/ ；内容以id结尾则后接 android.cursor.item/  
@@ -528,3 +528,17 @@ content://com.guc.firstlinecode.provider/Book/1
      android:enabled="true"
      android:exported="true"/>
 ```  
+### 手机多媒体
+#### 通知  
+* 创建通知渠道  
+Android8.0引入通知渠道的概念  
+```
+  //1、获取NotificationManager
+  val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+  //2、创建通知渠道 大于等于Android8.0
+  if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
+      val channel1 = NotificationChannel(channelId, channelName,NotificationManager.IMPORTANCE_DEFAULT)
+      val channel2 = NotificationChannel(channelId2, channelName2,NotificationManager.IMPORTANCE_HIGH)
+      notificationManager.createNotificationChannels(listOf(channel1,channel2))
+  }
+```
