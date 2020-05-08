@@ -18,4 +18,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="创建通知渠道" />
+
+    <Button
+        android:id="@+id/btnSendNotice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="发送一个通知" />
+
+    <Button
+        android:id="@+id/btnSendStyleNotice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="发送一个特殊样式的通知" />
 </LinearLayout>

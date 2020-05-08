@@ -542,4 +542,29 @@ Android8.0引入通知渠道的概念
       notificationManager.createNotificationChannels(listOf(channel1,channel2))
   }
 ```
-<img src="https://github.com/icookingcode/FirstLineCode/blob/master/snapshoot/Screenshot_1588903657.png"  height="640" width="360">
+<img src="https://github.com/icookingcode/FirstLineCode/blob/master/snapshoot/Screenshot_1588903657.png"  height="640" width="360">  
+
+* 通知基本用法  
+```
+ val pi = PendingIntent.getActivity(this,0,Intent(this,ListViewActivity::class.java),0)
+//创建一个Notification
+ val notification = NotificationCompat.Builder(context, channelId).run { //channelId必须是已创建好的channel,否则无法显示通知
+            setContentTitle("通知标题")
+            setContentText("通知的详细信息，这里是具体内容啊")
+            setSmallIcon(R.drawable.orange)  //显示在状态栏的图标
+            setLargeIcon(BitmapFactory.decodeResource(resources,R.drawable.large_orange))//拉下通知栏后的图标
+            setContentIntent(pi)
+            var notice = build()
+            notice
+        }
+//使用NotificationManager,发送通知
+ notificationManager.notify(1,notification)
+```
+* 给通知添加点击事件    
+  * 创建PendingIntent
+  * 调用 NotificationCompat.Builder对象.setContentIntent()即可
+  * 控制通知消失（1、调用 NotificationCompat.Builder对象.setAutoCancel(true) 2、notificationManager.cancel(noticeId)）
+* 通知高级用法  
+调用 NotificationCompat.Builder对象.setStyle()方法，显示更多样式的通知  
+  * NotificationCompat.BigTextStyle().bigText() ,长文本样式
+  * NotificationCompat.BigPictureStyle().bigPicture() ,大图样式
