@@ -542,4 +542,4 @@ Android8.0引入通知渠道的概念
       notificationManager.createNotificationChannels(listOf(channel1,channel2))
   }
 ```
-![通知渠道创建](https://github.com/icookingcode/FirstLineCode/blob/master/snapshoot/Screenshot_1588903657.png)
+<img src="https://github.com/icookingcode/FirstLineCode/blob/master/snapshoot/Screenshot_1588903657.png"  height="360" width="640">
