@@ -430,7 +430,7 @@ SQLite是一款轻量级的关系型数据库。
     
   ```
 ### ContentProvider (跨程序共享数据)
-####运行时权限
+#### 运行时权限
 * CALENDAR  日历权限
 * CAMERA  相机权限
 * CONTACTS 通讯录
@@ -514,7 +514,7 @@ content://com.guc.firstlinecode.provider/Book/1
   3.1 内容Uri的MIME类型定义
  * 必须以vnd开头
  * 内容uri以路径结尾，后接 android.cursor.dir/ ；内容以id结尾则后接 android.cursor.item/  
- * 最后接上： vnd.<authority>.<path>
+ * 最后接上： vnd.&lt;authority&gt;.&lt;path&gt;
  ```
     vnd.android.cursor.dir/vnd.com.guc.firstlinecode.provider.Book}
     vnd.android.cursor.item/vnd.com.guc.firstlinecode.provider.Book}
