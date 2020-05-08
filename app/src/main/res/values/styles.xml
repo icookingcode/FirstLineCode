@@ -11,4 +11,20 @@
     <style name="MyDialog" parent="Theme.AppCompat.Light.Dialog">
 
     </style>
+
+    <style name="MyDialogBottom" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowFrame">@null</item> <!--Dialog的windowFrame框为无-->
+        <item name="android:windowAnimationStyle">@style/AnimBottom</item>
+        <item name="android:windowNoTitle">true</item><!--是否显示标题-->
+        <item name="android:windowIsFloating">true</item>            <!--是否浮现在activity之上-->
+        <item name="android:windowIsTranslucent">true</item>         <!--是否半透明-->
+        <item name="android:windowContentOverlay">@null</item>       <!--是否有覆盖-->
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+    </style>
+
+    <style name="AnimBottom" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
+    </style>
 </resources>

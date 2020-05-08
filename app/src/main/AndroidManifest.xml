@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.NotificationActivity"></activity>
+        <activity android:name=".ui.CameraAndAlbumActivity"></activity>
+        <activity android:name=".ui.NotificationActivity" />
         <activity android:name=".ui.RuntimePermissionActivity" />
         <activity android:name=".ui.DataPersistenceActivity" />
         <activity android:name=".ui.BroadcastActivity" />
@@ -55,6 +56,9 @@
             android:name=".DialogActivity"
             android:theme="@style/MyDialog" />
         <activity
+            android:name=".SelectPictureActivity"
+            android:theme="@style/MyDialogBottom" />
+        <activity
             android:name=".SingleInstanceActivity"
             android:launchMode="singleInstance" />
 
@@ -88,6 +92,15 @@
             android:authorities="com.guc.firstlinecode.provider"
             android:enabled="true"
             android:exported="true" />
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.guc.firstlinecode.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>

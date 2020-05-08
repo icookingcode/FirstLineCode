@@ -14,6 +14,10 @@ import com.guc.firstlinecode.base.BaseActivity
 import com.guc.firstlinecode.utils.ToastUtil
 import kotlinx.android.synthetic.main.activity_runtime_permission.*
 
+/**
+ * 运行时权限
+ * ContentResolver 使用
+ */
 class RuntimePermissionActivity : BaseActivity(), View.OnClickListener {
     private lateinit var adapter: ArrayAdapter<String>
     private lateinit var contactList: ArrayList<String>

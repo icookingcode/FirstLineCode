@@ -568,3 +568,13 @@ Android8.0引入通知渠道的概念
 调用 NotificationCompat.Builder对象.setStyle()方法，显示更多样式的通知  
   * NotificationCompat.BigTextStyle().bigText() ,长文本样式
   * NotificationCompat.BigPictureStyle().bigPicture() ,大图样式
+####相机和相册
+* 拍照  
+```
+//启动相机
+val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
+startActivityForResult(intent, REQUEST_CODE)
+```  
+说明：android 7.0及以上文件的uri需要通过FileProvider获取  
+
