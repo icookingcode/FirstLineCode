@@ -292,7 +292,7 @@ interface MyClass<T>{
 }
 ```
   * out T :T只能出现在out位置,相当于禁用了set方法
-  * in T :T只能出现在in位置
+  * in T :T只能出现在in位置  
 协变：假如定义一个MyClass&lt;T&gt;的泛型类，其中A是B的子类，同时MyClass&lt;A&gt;又是MyClass&lt;B&gt;的子类型，那么我们就成MyClass在T这个泛型上的协变。  
 实现：MyClass&lt;out T&gt; 指定T只可出现在out位置（即泛型类在其泛型类型的数据上只读）  
 ```
