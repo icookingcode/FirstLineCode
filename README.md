@@ -275,6 +275,42 @@ infix fun String.beginWith(prefix: String) = startsWith(prefix)
 
 string.beginWith(prefix) == string beginWith prefix
 ```
+### 泛型的实化与泛型的协变
+* 泛型的实化允许获取泛型的实际类型（使用inline 和 reified 关键字）  
+```
+inline fun <reified T> startActivity(context: Context,block: Intent.() -> Unit) {
+    val intent = Intent(context, T::class.java)
+    intent.block()
+    context.startActivity(intent)
+}
+```
+* 泛型的协变  
+```
+interface MyClass<T>{
+    //in位置：参数位  out位值：返回位
+    fun method(param:T):T
+}
+```
+  * out T :T只能出现在out位置,相当于禁用了set方法
+  * in T :T只能出现在in位置
+协变：假如定义一个MyClass<T>的泛型类，其中A是B的子类，同时MyClass<A>又是MyClass<B>的子类型，那么我们就成MyClass在T这个泛型上的协变。  
+实现：MyClass<out T> 指定T只可出现在out位置（即泛型类在其泛型类型的数据上只读）  
+```
+class SimpleData<out T>(val data:T?) {
+    fun get(): T? = data
+}
+```
+* 泛型的逆变  
+逆变：假如定义一个MyClass<T>的泛型类，其中A是B的子类，同时MyClass<B>又是MyClass<A>的子类型，那么我们就成MyClass在T这个泛型上的协变。  
+实现：MyClass<in T> 指定T只能出现在in位置（即泛型类在其泛型类型的数据上只可写，不可读）  
+```
+/* 
+ * 描述：泛型类逆变
+ */
+interface Transformer<in T> {
+    fun transform(t:T):String
+}
+```
 ## Android 
 ### Activity
 * menu 使用  

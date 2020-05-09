@@ -4,7 +4,7 @@ package com.guc.firstlinecode.ktexercise
  * Created by guc on 2020/4/30.
  * 描述：
  */
-abstract class Person(name: String) {
+abstract class Person(open var name: String) {
 
     init {
         println("init in Person")

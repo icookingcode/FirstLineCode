@@ -1,6 +1,8 @@
 package com.guc.firstlinecode.utils
 
 import android.content.ContentValues
+import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import kotlin.reflect.KProperty
 
@@ -62,4 +64,11 @@ class Later<T>(val block: () -> T) {
         }
         return value as T
     }
+}
+
+//泛型实化
+inline fun <reified T> startActivity(context: Context, block: Intent.() -> Unit) {
+    val intent = Intent(context, T::class.java)
+    intent.block()
+    context.startActivity(intent)
 }
