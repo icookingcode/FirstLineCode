@@ -267,6 +267,14 @@ class Delegate {
     }
 }
 ```
+### infix函数
+A to B  &lt;=&gt; A.to(B)  
+```
+//A.method(B)  等价于 A method B
+infix fun String.beginWith(prefix: String) = startsWith(prefix)
+
+string.beginWith(prefix) == string beginWith prefix
+```
 ## Android 
 ### Activity
 * menu 使用  
