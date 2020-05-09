@@ -603,8 +603,23 @@ startActivityForResult(intent, REQUEST_CODE)
 * 播放视频
   * 使用VideoView播放视频(视频资源放在res/raw目录下)
   ```
-  VideoView.setVideoUri(Uri.parse("android.resource://" + getpackageName() + "/" + R.raw.movie));
+  VideoView.setVideoUri(Uri.parse("android.resource://" + getpackageName() + "/" + ${R.raw.movie}));
   ```
+### Service
+#### 异步消息处理
+* Message:消息，携带数据  
+* Handler:处理者，负责发送和处理消息  
+* MessageQueue：消息队列  
+* Looper： 消息管家，负责去除队列中的消息传递给Handler的handleMessage()方法  
+#### AsyncTask 使用
+作用：进行异步消息处理  
+1. 定义class MyTask:AsyncTask<Unit,Int,Boolean>  
+2. 创建MyTask对象，调用myTask.execute()执行任务  
+#### Service
+* startService  Service无法与Activity通讯
+* bindService  Service可与Activity通讯
+* 前台Service  即使退出应用也会一直运行，不用担心会被系统回收
+  * Android9.0之后，需添加权限&lt;uses-permission android:name="android.permission.FOREGROUND_SERVICE"/&gt;
 
 
 

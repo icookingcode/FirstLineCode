@@ -31,6 +31,7 @@ class MainActivity : BaseActivity(), OnClickListener {
         button12.setOnClickListener(this)
         button13.setOnClickListener(this)
         button14.setOnClickListener(this)
+        button15.setOnClickListener(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -67,6 +68,7 @@ class MainActivity : BaseActivity(), OnClickListener {
             R.id.button12 -> RuntimePermissionActivity.start(this)
             R.id.button13 -> NotificationActivity.start(this)
             R.id.button14 -> CameraAndAlbumActivity.start(this)
+            R.id.button15 -> ServiceActivity.start(this)
         }
     }
 

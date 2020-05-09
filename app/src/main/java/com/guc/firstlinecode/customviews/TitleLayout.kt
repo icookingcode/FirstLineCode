@@ -19,7 +19,7 @@ class TitleLayout(context: Context, attrs: AttributeSet) : FrameLayout(context, 
 
     var title: CharSequence = ""
         set(value) {
-            titleText.setText(value)
+            titleText.text = value
             field = value
         }
 

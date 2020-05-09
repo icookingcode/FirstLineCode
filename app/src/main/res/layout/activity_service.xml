@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.ServiceActivity">
+
+    <com.guc.firstlinecode.customviews.TitleLayout
+        android:id="@+id/titleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnStartService"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="startService()" />
+
+    <Button
+        android:id="@+id/btnStopService"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="stopService()" />
+
+    <Button
+        android:id="@+id/btnBindService"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="bindService()" />
+
+    <Button
+        android:id="@+id/btnUnBindService"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="unbindService()" />
+
+    <Button
+        android:id="@+id/btnStartForegroundService"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="StartForegroundService" />
+
+    <Button
+        android:id="@+id/btnStopForegroundService"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="StopForegroundService" />
+
+    <Button
+        android:id="@+id/btnStartIntentService"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="StartIntentService" />
+</LinearLayout>
