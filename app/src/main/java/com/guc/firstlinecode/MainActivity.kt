@@ -10,6 +10,7 @@ import android.view.View.OnClickListener
 import com.guc.firstlinecode.base.BaseActivity
 import com.guc.firstlinecode.ui.*
 import com.guc.firstlinecode.utils.ToastUtil
+import com.guc.firstlinecode.utils.quickStartActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity(), OnClickListener {
@@ -32,6 +33,7 @@ class MainActivity : BaseActivity(), OnClickListener {
         button13.setOnClickListener(this)
         button14.setOnClickListener(this)
         button15.setOnClickListener(this)
+        button16.setOnClickListener(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -69,6 +71,7 @@ class MainActivity : BaseActivity(), OnClickListener {
             R.id.button13 -> NotificationActivity.start(this)
             R.id.button14 -> CameraAndAlbumActivity.start(this)
             R.id.button15 -> ServiceActivity.start(this)
+            R.id.button16 -> quickStartActivity<NetTechnologyActivity>(this) {}
         }
     }
 

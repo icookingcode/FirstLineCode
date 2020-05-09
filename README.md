@@ -89,7 +89,7 @@ class Util{
 * 通过@JvmStatic注解定义(只能加在对象类 或伴生对象类中的方法上)
 * 顶层方法（类之外的方法）  
 ### 关键字
-* 延时初始化 lateinit
+ * 延时初始化 lateinit
 ```
 class Demo{
     private lateinit var param:String //延迟初始化
@@ -100,9 +100,9 @@ class Demo{
     }
 }
 ```
-* 定义常量 const (const 只能在单例类、伴生对象或顶层方法中才能使用)
-* 密封类 sealed 好处：kotlin会自动检测密封类有哪些子类，并强制要求你将每个子类所对应的条件全部处理
-```
+ * 定义常量 const (const 只能在单例类、伴生对象或顶层方法中才能使用)
+ * 密封类 sealed 好处：kotlin会自动检测密封类有哪些子类，并强制要求你将每个子类所对应的条件全部处理
+  ```
 //实现
 sealed class Base()
 class A :Base(){
@@ -114,9 +114,9 @@ when(base:Base){
     A->...
     B->...
 }
-```
-* 运算符重载 operator 重新定义运算符的含义，实现对象的运算
-```
+  ```
+ * 运算符重载 operator 重新定义运算符的含义，实现对象的运算
+  ```
 //定义重载运算符的对象类
 class Money(val value:Int){
     operator fun plus(money:Money):Money{
@@ -124,7 +124,7 @@ class Money(val value:Int){
         return Money(sum)
     }
 }
-```
+  ```
   * a+b  调用 a.plus(b)
   * a-b  调用 a.minus(b)
   * a*b  调用 a.times(b)
@@ -276,7 +276,7 @@ infix fun String.beginWith(prefix: String) = startsWith(prefix)
 string.beginWith(prefix) == string beginWith prefix
 ```
 ### 泛型的实化与泛型的协变
-* 泛型的实化允许获取泛型的实际类型（使用inline 和 reified 关键字）  
+ * 泛型的实化允许获取泛型的实际类型（使用inline 和 reified 关键字）  
 ```
 inline fun <reified T> startActivity(context: Context,block: Intent.() -> Unit) {
     val intent = Intent(context, T::class.java)
@@ -284,15 +284,16 @@ inline fun <reified T> startActivity(context: Context,block: Intent.() -> Unit) 
     context.startActivity(intent)
 }
 ```
-* 泛型的协变  
+ * 泛型的协变
 ```
 interface MyClass<T>{
     //in位置：参数位  out位值：返回位
     fun method(param:T):T
 }
 ```
-  * out T :T只能出现在out位置,相当于禁用了set方法
-  * in T :T只能出现在in位置  
+   * out T :T只能出现在out位置,相当于禁用了set方法
+   * in T :T只能出现在in位置  
+   
 协变：假如定义一个MyClass&lt;T&gt;的泛型类，其中A是B的子类，同时MyClass&lt;A&gt;又是MyClass&lt;B&gt;的子类型，那么我们就成MyClass在T这个泛型上的协变。  
 实现：MyClass&lt;out T&gt; 指定T只可出现在out位置（即泛型类在其泛型类型的数据上只读）  
 ```
@@ -654,8 +655,8 @@ startActivityForResult(intent, REQUEST_CODE)
 #### Service
 * startService  Service无法与Activity通讯
 * bindService  Service可与Activity通讯
-* 前台Service  即使退出应用也会一直运行，不用担心会被系统回收
+* 前台Service  即使退出应用也会一直运行，不用担心会被系统回收  
   * Android9.0之后，需添加权限&lt;uses-permission android:name="android.permission.FOREGROUND_SERVICE"/&gt;
-
+### 网络技术
 
 
