@@ -34,6 +34,36 @@ object FileUtils {
     }
 
     /**
+     * 将信息写入文件
+     *
+     * @param filePath 文件路径
+     * @param content  待保存内容
+     * @param append   是否追加
+     * @return true：保存成功  false:保存失败
+     */
+    fun writeStr2File(
+        filePath: String,
+        content: String,
+        append: Boolean
+    ): Boolean {
+        val f = File(filePath)
+        if (!f.exists()) {
+            f.parentFile?.mkdirs()
+            f.createNewFile()
+        }
+        return try {
+            val output = FileOutputStream(filePath, append)
+            val writer = BufferedWriter(OutputStreamWriter(output))
+            writer.use {//kotlin内置的扩展函数，保证lambda表达式中代码执行完毕后自动关闭外层的数据流
+                it.write(content)
+            }
+            true
+        } catch (e: IOException) {
+            e.printStackTrace()
+            false
+        }
+    }
+    /**
      * 读取文件中内容
      */
     fun readFile2String(context: Context, fileName: String): String {
