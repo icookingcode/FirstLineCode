@@ -12,14 +12,25 @@
         android:layout_height="wrap_content" />
 
     <Button
-        android:id="@+id/btnWebview"
+        android:id="@+id/btnRequest"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="webview打开CSDN" />
+        android:text="发起请求，获取百度" />
 
     <Button
-        android:id="@+id/btnHttpURLConnection"
+        android:id="@+id/btnRequestByOkHttp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="HttpURLConnection" />
+        android:text="okhttp访问：http://192.168.44.141:8099/get_data.xml" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvShow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </ScrollView>
+
 </LinearLayout>

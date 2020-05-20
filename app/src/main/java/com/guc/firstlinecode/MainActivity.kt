@@ -9,6 +9,7 @@ import android.view.View
 import android.view.View.OnClickListener
 import com.guc.firstlinecode.base.BaseActivity
 import com.guc.firstlinecode.ui.*
+import com.guc.firstlinecode.ui.net.NetTechnologyActivity
 import com.guc.firstlinecode.utils.ToastUtil
 import com.guc.firstlinecode.utils.quickStartActivity
 import kotlinx.android.synthetic.main.activity_main.*

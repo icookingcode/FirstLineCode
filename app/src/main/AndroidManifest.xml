@@ -15,9 +15,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:networkSecurityConfig="@xml/network_config"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.NetTechnologyActivity"></activity>
-        <activity android:name=".ui.ActivityBrowser" />
+        <activity android:name=".ui.net.HttpURLConnectionActivity"></activity>
+        <activity android:name=".ui.net.NetTechnologyActivity" />
+        <activity android:name=".ui.net.ActivityBrowser" />
         <activity android:name=".ui.ServiceActivity" />
         <activity android:name=".ui.CameraAndAlbumActivity" />
         <activity android:name=".ui.NotificationActivity" />

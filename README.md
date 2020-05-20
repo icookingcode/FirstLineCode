@@ -658,5 +658,45 @@ startActivityForResult(intent, REQUEST_CODE)
 * 前台Service  即使退出应用也会一直运行，不用担心会被系统回收  
   * Android9.0之后，需添加权限&lt;uses-permission android:name="android.permission.FOREGROUND_SERVICE"/&gt;
 ### 网络技术
+#### HttpURLConnection 请求网络
+```
+ val url = URL("https://www.baidu.com/")
+ val connection = url.openConnection() as HttpURLConnection
+ //请求方式GET/POST
+ connection.requestMethod = "GET"
+ //设置超时
+ connection.connectTimeout = 8000
+ connection.readTimeout = 8000
+ //读取服务器返回
+ val input = connection.inputStream
+ //关闭连接
+ connection.disconnect()
+```
+#### OkHttp
+* 引入OkHttp
+```
+implementation 'com.squareup.okhttp3:okhttp:4.1.0'
+```
+* OkHttp使用GET示例
+```
+ val client = OkHttpClient()
+ val request = Request.Builder().url("http://192.168.44.141:8099/get_data.xml").build()
+ val response = client.newCall(request).execute()
+ val responseData = response.body?.string()
+```
+<img src="https://github.com/icookingcode/FirstLineCode/blob/master/snapshoot/Screenshot_1589944520.png"  height="640" width="360">
+* OkHttp使用POST示例 
+```
+val client = OkHttpClient()
+val requstBody = FormBody.Builder()
+                .add("username","admin")
+                .add("password","admin")
+                .build()
+val request = Request.Builder().url("....")
+            .post(requstBody)
+            .build()
+ val response = client.newCall(request).execute()
+ val responseData = response.body?.string()
+```
 
 

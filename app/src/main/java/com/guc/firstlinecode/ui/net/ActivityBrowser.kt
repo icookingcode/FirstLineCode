@@ -1,4 +1,4 @@
-package com.guc.firstlinecode.ui
+package com.guc.firstlinecode.ui.net
 
 import android.os.Bundle
 import android.webkit.WebViewClient

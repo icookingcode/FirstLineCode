@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?><!--Android 9.0 开始，只允许使用HTTPS-->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>

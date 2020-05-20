@@ -1,4 +1,4 @@
-package com.guc.firstlinecode.ui
+package com.guc.firstlinecode.ui.net
 
 import android.os.Bundle
 import com.guc.firstlinecode.R
@@ -19,7 +19,11 @@ class NetTechnologyActivity : BaseActivity() {
         btnWebview.setOnClickListener {
             quickStartActivity<ActivityBrowser>(this) {
                 putExtra(ActivityBrowser.DATA_URL, "https://blog.csdn.net/qq_31028313")
+                putExtra(ActivityBrowser.DATA_TITLE, "Mr.Gu的CSDN")
             }
+        }
+        btnHttpURLConnection.setOnClickListener {
+            quickStartActivity<HttpURLConnectionActivity>(this) {}
         }
     }
 }
