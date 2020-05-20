@@ -25,5 +25,8 @@ class NetTechnologyActivity : BaseActivity() {
         btnHttpURLConnection.setOnClickListener {
             quickStartActivity<HttpURLConnectionActivity>(this) {}
         }
+        btnXmlParse.setOnClickListener {
+            quickStartActivity<ParseXmlAndJsonActivity>(this) {}
+        }
     }
 }

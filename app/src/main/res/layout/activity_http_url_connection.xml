@@ -23,6 +23,12 @@
         android:layout_height="wrap_content"
         android:text="okhttp访问：http://192.168.44.141:8099/get_data.xml" />
 
+    <Button
+        android:id="@+id/btnRequestJson"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="okhttp访问：http://192.168.44.141:8099/get_data.json" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

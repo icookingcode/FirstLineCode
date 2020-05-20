@@ -25,6 +25,26 @@ class HttpURLConnectionActivity : BaseActivity() {
         btnRequestByOkHttp.setOnClickListener {
             sendRequestWithOkhttp()
         }
+        btnRequestJson.setOnClickListener {
+            sendRequestJson()
+        }
+    }
+
+    private fun sendRequestJson() {
+        thread {
+            try {
+                val client = OkHttpClient()
+                val request =
+                    Request.Builder().url("http://192.168.44.141:8099/get_data.json").build()
+                val response = client.newCall(request).execute()
+                val responseData = response.body?.string()
+                if (responseData != null) {
+                    showResponse(responseData)
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
     }
 
     private fun sendRequestWithOkhttp() {

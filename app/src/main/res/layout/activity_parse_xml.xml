@@ -1,31 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.net.NetTechnologyActivity">
+    tools:context=".ui.net.ParseXmlAndJsonActivity">
 
     <com.guc.firstlinecode.customviews.TitleLayout
         android:id="@+id/titleLayout"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnParseXml"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="请求xml数据，并解析" />
+
+    <Button
+        android:id="@+id/btnParseJson"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="请求json数据，并解析" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvContent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/btnWebview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="webview打开CSDN" />
-
-    <Button
-        android:id="@+id/btnHttpURLConnection"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="HttpURLConnection" />
-
-    <Button
-        android:id="@+id/btnXmlParse"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="XML解析" />
 </LinearLayout>

@@ -684,8 +684,7 @@ implementation 'com.squareup.okhttp3:okhttp:4.1.0'
  val response = client.newCall(request).execute()
  val responseData = response.body?.string()
 ```
-<img src="https://github.com/icookingcode/FirstLineCode/blob/master/snapshoot/Screenshot_1589944520.png"  height="640" width="360">
-* OkHttp使用POST示例 
+* OkHttp使用POST示例  
 ```
 val client = OkHttpClient()
 val requstBody = FormBody.Builder()
@@ -697,6 +696,16 @@ val request = Request.Builder().url("....")
             .build()
  val response = client.newCall(request).execute()
  val responseData = response.body?.string()
+```  
+
+#### xml解析与json解析
+<img src="https://github.com/icookingcode/FirstLineCode/blob/master/snapshoot/Screenshot_1589944520.png"  height="640" width="360">
+<img src="https://github.com/icookingcode/FirstLineCode/blob/master/snapshoot/Screenshot_1589958749.png"  height="640" width="360">  
+
+* json解析（使用Gson）  
+
 ```
+implementation 'com.google.code.gson:gson:2.8.5'
+``` 
 
 
