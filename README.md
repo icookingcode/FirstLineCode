@@ -707,5 +707,13 @@ val request = Request.Builder().url("....")
 ```
 implementation 'com.google.code.gson:gson:2.8.5'
 ``` 
+#### 网络库：Retrofit使用  
+OkHttp侧重于底层通信的实现，Retrofit则侧重于上层接口的封装。  
+1. 引入相关依赖
+```
+    //retrofit网络库使用
+    implementation 'com.squareup.retrofit2:retrofit:2.6.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.1'
+```
 
 

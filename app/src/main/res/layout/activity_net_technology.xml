@@ -27,5 +27,11 @@
         android:id="@+id/btnXmlParse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="XML解析" />
+        android:text="XML解析与json解析" />
+
+    <Button
+        android:id="@+id/btnRetrofit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Retrofit使用" />
 </LinearLayout>

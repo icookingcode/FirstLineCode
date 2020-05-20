@@ -28,5 +28,8 @@ class NetTechnologyActivity : BaseActivity() {
         btnXmlParse.setOnClickListener {
             quickStartActivity<ParseXmlAndJsonActivity>(this) {}
         }
+        btnRetrofit.setOnClickListener {
+            quickStartActivity<RetrofitActivity>(this) {}
+        }
     }
 }
