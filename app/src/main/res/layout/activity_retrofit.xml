@@ -19,6 +19,12 @@
         android:layout_height="wrap_content"
         android:text="请求数据，并解析" />
 
+    <Button
+        android:id="@+id/btnGetData2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="请求数据，并解析" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvContent"
         android:layout_width="match_parent"

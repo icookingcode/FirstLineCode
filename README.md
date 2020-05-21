@@ -311,6 +311,58 @@ class SimpleData<out T>(val data:T?) {
 interface Transformer<in T> {
     fun transform(t:T):String
 }
+```  
+### 协程
+ 1. 添加依赖
+```
+    //协程使用
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1'
+```
+ 2. 基本用法
+* GlobalScope.launch {}//创建一个顶层协程，应用程序运行结束时也会跟着结束  
+* runBlocking{} //保证在协程作用域内的所有代码和子协程全部执行完。阻塞当前线程  
+* runBlocking{ launch{}..} //创建多个协程  
+* coroutineScope{ launch{}..} //可在协程作用域或挂起函数中调用
+* launch{} //只能在协程作用域中调用,返回Job对象无法获取执行结果  
+* async{}.await() //可获取代码块的执行结果,await()方法会阻塞当前协程直到获取到结果
+* withContext(Dispatchers.Default){ .. } //等价于async的简化版，阻塞当前协程直到获取结果
+* suspendCoroutine{ } //可简化任何回调的写法
+```
+/*
+ *需要指定线程参数
+ *Dispatchers.Default //默认低并发的线程策略
+ *Dispatchers.IO  //较高并发的线程策略，比如：网络请求
+ *Dispatchers.Main //表示不开启线程，只能在安卓中使用
+ */
+val result2 = withContext(Dispatchers.Default){
+            5+6
+}
+```
+
+注：suspend 可将函数声明为挂起函数，就可以调用其他挂起函数  delay()  
+```
+suspend fun printDot(){
+    println(".")
+    delay(100)
+}
+
+```
+* 项目最佳实践
+```
+   //创建job对象
+    val job = Job()
+    //通过CoroutineScope()函数获取CoroutineScope对象
+    val scope = CoroutineScope(job)
+    //创建的协程都会被关联到Job对象的作用域
+    scope.launch { 
+        //处理具体逻辑
+    }
+    scope.launch { 
+        
+    }
+    //取消job作用域下的所有协程
+    job.cancel()
 ```
 ## Android 
 ### Activity

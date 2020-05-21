@@ -10,8 +10,12 @@ import com.guc.firstlinecode.adapter.common.CommonAdapter4Rcv
 import com.guc.firstlinecode.adapter.common.ViewHolder4RecyclerView
 import com.guc.firstlinecode.base.BaseActivity
 import com.guc.firstlinecode.bean.AppInfo
+import com.guc.firstlinecode.utils.LogG
 import com.guc.firstlinecode.utils.retrofit.RetrofitHelper
 import kotlinx.android.synthetic.main.activity_retrofit.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -34,39 +38,59 @@ class RetrofitActivity : BaseActivity() {
                         call: Call<List<AppInfo>>,
                         response: Response<List<AppInfo>>
                     ) {
+                        LogG.loge(msg = "当前线程：${Thread.currentThread()}")
                         val datas = response.body()
                         if (datas != null)
-                            showData(datas)
+                            showDataOnMainThread(datas)
+
                     }
 
                 })
+        }
+
+        btnGetData2.setOnClickListener {
+//                val datas = Api.getAppInfoData()
+            runBlocking {
+                LogG.loge(msg = "当前线程：${Thread.currentThread()}")
+                withContext(Dispatchers.IO) {
+                    LogG.loge(msg = "当前线程：Dispatchers.IO${Thread.currentThread()}")
+                }
+                withContext(Dispatchers.Default) {
+                    LogG.loge(msg = "当前线程：Dispatchers.Default${Thread.currentThread()}")
+                }
+            }
+
         }
     }
 
     private fun showData(datas: List<AppInfo>) {
         runOnUiThread {
-            val adapter = object : CommonAdapter4Rcv<AppInfo>(datas) {
-                override fun getRootView(parent: ViewGroup, viewType: Int): View {
-                    return LayoutInflater.from(parent.context)
-                        .inflate(android.R.layout.simple_list_item_1, parent, false)
-                }
+            showDataOnMainThread(datas)
+        }
+    }
 
-                override fun bindData(
-                    viewHolder: ViewHolder4RecyclerView,
-                    position: Int,
-                    data: AppInfo,
-                    itemType: Int
-                ) {
-                    viewHolder.apply {
-                        setText(
-                            android.R.id.text1, "${data.id} \n${data.name}\n" +
-                                    "${data.version}"
-                        )
-                    }
+    private fun showDataOnMainThread(datas: List<AppInfo>) {
+        val adapter = object : CommonAdapter4Rcv<AppInfo>(datas) {
+            override fun getRootView(parent: ViewGroup, viewType: Int): View {
+                return LayoutInflater.from(parent.context)
+                    .inflate(android.R.layout.simple_list_item_1, parent, false)
+            }
+
+            override fun bindData(
+                viewHolder: ViewHolder4RecyclerView,
+                position: Int,
+                data: AppInfo,
+                itemType: Int
+            ) {
+                viewHolder.apply {
+                    setText(
+                        android.R.id.text1, "${data.id} \n${data.name}\n" +
+                                "${data.version}"
+                    )
                 }
             }
-            rcvContent.layoutManager = LinearLayoutManager(this)
-            rcvContent.adapter = adapter
         }
+        rcvContent.layoutManager = LinearLayoutManager(this)
+        rcvContent.adapter = adapter
     }
 }
