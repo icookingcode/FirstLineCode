@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navFavourite"
+        android:title="我喜欢的水果">
+        <menu></menu>
+    </item>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/navApple"
+            android:icon="@drawable/apple"
+            android:title="苹果" />
+        <item
+            android:id="@+id/navOrange"
+            android:icon="@drawable/orange"
+            android:title="橘子" />
+        <item
+            android:id="@+id/navBanana"
+            android:icon="@drawable/banana"
+            android:title="苹果" />
+    </group>
+</menu>

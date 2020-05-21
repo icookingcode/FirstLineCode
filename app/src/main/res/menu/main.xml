@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/add_item"
-        android:title="@string/add" />
+        android:title="@string/add"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/backup_item"
+        android:title="@string/backup"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/remove_item"
-        android:title="@string/remove" />
+        android:title="@string/remove"
+        app:showAsAction="never" />
 </menu>

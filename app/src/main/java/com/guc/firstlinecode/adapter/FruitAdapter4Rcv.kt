@@ -30,8 +30,8 @@ class FruitAdapter4Rcv(private val layoutId: Int, val datas: List<Fruit>) :
 
     override fun onBindViewHolder(holder: ViewHolder4RecyclerView, position: Int) {
         holder.apply {
-            setText(R.id.textView, datas[position]?.name)
-            setImageResource(R.id.imageView, datas[position]?.imageId)
+            setText(R.id.textView, datas[position].name)
+            setImageResource(R.id.imageView, datas[position].imageId)
         }
     }
 }

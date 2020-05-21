@@ -27,10 +27,10 @@ abstract class CommonAdapter4ListView<T>(
             view = convertView
             viewHolder = view.tag as ViewHolder4ListView
         }
-        bindData(viewHolder, position, getItem(position) as T)
+        bindData(viewHolder, position, getItem(position))
         return view
     }
 
     //数据绑定
-    abstract fun bindData(viewHolder: ViewHolder4ListView, position: Int, data: T)
+    abstract fun bindData(viewHolder: ViewHolder4ListView, position: Int, data: T?)
 }

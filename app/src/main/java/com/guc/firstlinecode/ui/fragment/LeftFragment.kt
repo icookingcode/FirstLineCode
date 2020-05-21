@@ -1,6 +1,5 @@
 package com.guc.firstlinecode.ui.fragment
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,10 +21,10 @@ class LeftFragment : Fragment() {
         const val TAG = "LeftFragment"
     }
 
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-        LogG.loge(TAG, "onAttach")
-    }
+//    override fun onAttach(context: Context?) {
+//        super.onAttach(context)
+//        LogG.loge(TAG, "onAttach")
+//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

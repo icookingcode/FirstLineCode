@@ -1,9 +1,6 @@
 package com.guc.firstlinecode.utils
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
-import android.app.Service
+import android.app.*
 import android.content.Context
 import android.graphics.BitmapFactory
 import android.os.Build
@@ -47,7 +44,7 @@ object NotificationUtil {
         title: String,
         text: String,
         pi: PendingIntent? = null
-    ) = NotificationCompat.Builder(context, channelId).run {
+    ): Notification = NotificationCompat.Builder(context, channelId).run {
         setContentTitle(title)
         setContentText(text)
         setSmallIcon(R.drawable.orange)

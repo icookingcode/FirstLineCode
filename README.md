@@ -767,5 +767,24 @@ OkHttp侧重于底层通信的实现，Retrofit则侧重于上层接口的封装
     implementation 'com.squareup.retrofit2:retrofit:2.6.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.1'
 ```
+### Material Design (Android 5.0之后引入)
+* Toolbar
+* DrawerLayout 中放置两个直接子控件
+  1. 第一个为主屏幕显示内容
+  2. 第二个为滑动菜单显示的内容
+* NavigationView 定义滑动菜单的内容
+  ```
+    implementation 'com.google.android.material:material:1.1.0'
+  ```
+* FloatingActionButton 悬浮按钮
+* Snackbar 更先进的提示工具
+* CoordinatorLayout 加强版的FrameLayout，可以监听到其所有子控件的各个事件
+* AppBarLayout 解决Toolbar被遮挡问题
+  * 滚动布局添加： app:layout_behavior="@string/appbar_scrolling_view_behavior" ，实现不遮挡Toolbar
+  * Toolbar添加：app:layout_scrollFlags="scroll|enterAlways|snap"，设置滚动影响该控件的行为；scroll:表示向上滚动消失，enterAlways:表示向下滚动重新显示，snap:还没完全显示或隐藏时，根据滚动距离，自动选择显示还是隐藏。
+* CollapsingToolbarLayout 可折叠标题栏
+  * 添加app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"，设置滚动影响该控件的行为；exitUntilCollapsed：折叠完成后保留在界面上，不再移除屏幕
+  * Toolbar和其他子控件添加：app:layout_collapseMode="parallax"，parallax：设置控件可折叠隐藏，pin:则叠后固定在屏幕上。
+* 
 
 

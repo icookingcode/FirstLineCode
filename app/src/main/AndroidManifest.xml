@@ -17,7 +17,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.net.RetrofitActivity"></activity>
+        <activity
+            android:name=".ui.material.FruitActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.material.MaterialDesignActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ui.net.RetrofitActivity" />
         <activity android:name=".ui.net.ParseXmlAndJsonActivity" />
         <activity android:name=".ui.net.HttpURLConnectionActivity" />
         <activity android:name=".ui.net.NetTechnologyActivity" />

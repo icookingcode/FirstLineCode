@@ -9,6 +9,7 @@ import android.view.View
 import android.view.View.OnClickListener
 import com.guc.firstlinecode.base.BaseActivity
 import com.guc.firstlinecode.ui.*
+import com.guc.firstlinecode.ui.material.MaterialDesignActivity
 import com.guc.firstlinecode.ui.net.NetTechnologyActivity
 import com.guc.firstlinecode.utils.ToastUtil
 import com.guc.firstlinecode.utils.quickStartActivity
@@ -19,6 +20,7 @@ class MainActivity : BaseActivity(), OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        supportActionBar?.show()
         button1.setOnClickListener(this)
         button2.setOnClickListener(this)
         button3.setOnClickListener(this)
@@ -35,6 +37,7 @@ class MainActivity : BaseActivity(), OnClickListener {
         button14.setOnClickListener(this)
         button15.setOnClickListener(this)
         button16.setOnClickListener(this)
+        button17.setOnClickListener(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -46,6 +49,7 @@ class MainActivity : BaseActivity(), OnClickListener {
         when (item.itemId) {
             R.id.add_item -> ToastUtil.toast(this, "添加")
             R.id.remove_item -> ToastUtil.toast(this, "移除")
+            R.id.backup_item -> ToastUtil.toast(this, "备份")
         }
         return true
     }
@@ -73,6 +77,7 @@ class MainActivity : BaseActivity(), OnClickListener {
             R.id.button14 -> CameraAndAlbumActivity.start(this)
             R.id.button15 -> ServiceActivity.start(this)
             R.id.button16 -> quickStartActivity<NetTechnologyActivity>(this) {}
+            R.id.button17 -> quickStartActivity<MaterialDesignActivity>(this) {}
         }
     }
 
