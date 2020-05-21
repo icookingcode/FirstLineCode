@@ -1,6 +1,7 @@
 package com.guc.firstlinecode.ui.material
 
 import android.os.Bundle
+import android.view.MenuItem
 import com.bumptech.glide.Glide
 import com.guc.firstlinecode.R
 import com.guc.firstlinecode.base.BaseActivity
@@ -29,6 +30,13 @@ class FruitActivity : BaseActivity() {
         collapsingToolbar.title = fruitName
         Glide.with(context).load(fruitImageId).into(fruitImage)
         fruitContentText.text = generateFruitContent(fruitName)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> this.finish()
+        }
+        return true
     }
 
     private fun generateFruitContent(fruitName: String) = fruitName.repeat(500)

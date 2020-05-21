@@ -19,7 +19,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.material.FruitActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/TransStatusBarTheme" />
         <activity
             android:name=".ui.material.MaterialDesignActivity"
             android:theme="@style/AppTheme.NoActionBar" />
