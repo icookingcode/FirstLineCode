@@ -787,4 +787,49 @@ OkHttp侧重于底层通信的实现，Retrofit则侧重于上层接口的封装
   * Toolbar和其他子控件添加：app:layout_collapseMode="parallax"，parallax：设置控件可折叠隐藏，pin:则叠后固定在屏幕上。
 * 
 
+### Git高级用法
+#### git分支的用法
+1. 创建分支(v1.0)
+```
+git branch v1.0
+```
+2. 查看分支
+```
+git branch
+```
+3. 切换分支
+```
+git checkout v1.0
+```
+4. 合并v1.0分支到master分支
+```
+git chechout master
+git merge v1.0
+```
+5. 删除分支
+```
+git branch -D v1.0
+```
+#### 与远程版本库协作
+1.远程代码下载到本地
+```
+git clone https://github.com/icookingcode/FirstLineCode.git 
+```
+2.本地修改同步到远程仓库
+```
+//origin :指定远程版本库的git地址  master:同步到哪个分支
+git push origin master
+```
+3.远程仓库同步到本地-fetch
+```
+git fetch origin master //同步代码并不会合并到本地分支，而会存放到 origin/master 分支上
+git diff origin/master //查看与本地的不同
+git merge origin/master //合并到主分支
+```
+4.远程仓库同步到本地-pull
+```
+git pull origin master //相当于fetch + merge
+```
+
+
 

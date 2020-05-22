@@ -10,8 +10,8 @@ import com.google.android.material.snackbar.Snackbar
  * 描述：Toast 封装
  */
 object ToastUtil {
-    fun toast(context: Context, txt: String, time: Int = Toast.LENGTH_SHORT) {
-        Toast.makeText(context, txt, time).show()
+    fun toast(context: Context, txt: String, duration: Int = Toast.LENGTH_SHORT) {
+        Toast.makeText(context, txt, duration).show()
     }
 
     fun snack(
