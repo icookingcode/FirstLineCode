@@ -1,5 +1,6 @@
 package com.guc.firstlinecode.service
 
+import android.content.Context
 import android.os.AsyncTask
 import android.os.Environment
 import okhttp3.OkHttpClient
@@ -16,7 +17,7 @@ import java.io.RandomAccessFile
  *      Progress:进度
  *      Result:执行结果
  */
-class DownloadTask(val downloadListener: DownloadListener) : AsyncTask<String, Int, Int>() {
+class DownloadTask(val downloadListener: DownloadListener,val context:Context) : AsyncTask<String, Int, Int>() {
 
     var isCanceled = false
     var isPaused = false
@@ -46,9 +47,15 @@ class DownloadTask(val downloadListener: DownloadListener) : AsyncTask<String, I
             val fileName = url.substring(url.lastIndexOf("/"))
             val dictionary =
                 Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).path
+//            val dictionary =
+//                context.externalCacheDir?.path
             file = File(dictionary + fileName)
+
             if (file.exists()) {
                 downloadedLength = file.length()
+            }else{
+                file.parentFile.mkdirs()
+                file.createNewFile()
             }
             val contentLength = getContentLength(url)
             if (contentLength == 0L) {
@@ -59,7 +66,7 @@ class DownloadTask(val downloadListener: DownloadListener) : AsyncTask<String, I
             val client = OkHttpClient()
             val request = Request.Builder()
                 //断点下载
-                .addHeader("RANGE", "bytes=$downloadedLength")
+                .addHeader("RANGE", "bytes=$downloadedLength-$contentLength")
                 .url(url)
                 .build()
             val response = client.newCall(request).execute()
@@ -80,7 +87,7 @@ class DownloadTask(val downloadListener: DownloadListener) : AsyncTask<String, I
                         total += len
                         savedFile.write(b, 0, len)
 
-                        val progress = ((total + downloadedLength) * 100 / contentLength) as Int
+                        val progress = ((total + downloadedLength) * 100 / contentLength).toInt()
                         publishProgress(progress)
                         len = it.read(b)
                     }
@@ -102,7 +109,11 @@ class DownloadTask(val downloadListener: DownloadListener) : AsyncTask<String, I
 
     //运行在主线程，可对UI进行更新进度
     override fun onProgressUpdate(vararg values: Int?) {
-        super.onProgressUpdate(*values)
+        val progress = values[0] ?: return
+        if (progress > lastProgress) {
+            downloadListener.onProgress(progress)
+            lastProgress = progress
+        }
     }
 
     //后台任务执行完毕后调用

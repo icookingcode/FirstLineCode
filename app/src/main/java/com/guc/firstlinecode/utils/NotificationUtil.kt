@@ -43,13 +43,17 @@ object NotificationUtil {
         channelId: String = channelId_NORMAL,
         title: String,
         text: String,
-        pi: PendingIntent? = null
+        pi: PendingIntent? = null,
+        progress: Int = -1
     ): Notification = NotificationCompat.Builder(context, channelId).run {
         setContentTitle(title)
-        setContentText(text)
+        if (text.isNotEmpty()) setContentText(text)
         setSmallIcon(R.drawable.orange)
         setLargeIcon(BitmapFactory.decodeResource(context.resources, R.drawable.large_orange))
         pi?.let { this.setContentIntent(it) }
+        if (progress >= 0) {
+            setProgress(100, progress, false)
+        }
         val notification = build()
         notification
     }

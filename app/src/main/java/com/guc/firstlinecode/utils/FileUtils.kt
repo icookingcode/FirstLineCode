@@ -2,8 +2,12 @@ package com.guc.firstlinecode.utils
 
 import android.content.Context
 import android.content.res.AssetManager
+import android.net.Uri
+import android.os.Build
+import androidx.core.content.FileProvider
 import com.guc.firstlinecode.R
 import java.io.*
+
 
 /**
  * Created by guc on 2020/5/6.
@@ -148,5 +152,20 @@ object FileUtils {
             e.printStackTrace()
             "NoSuchFieldException"
         }
+    }
+
+    fun getUri(
+        context: Context?,
+        authority: String?,
+        file: File?
+    ): Uri? {
+        return  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            //设置7.0以上共享文件，分享路径定义在xml/file_paths.xml
+            FileProvider.getUriForFile(context!!, authority!!, file!!)
+        } else {
+            // 7.0以下,共享文件
+            Uri.fromFile(file)
+        }
+
     }
 }
