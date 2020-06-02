@@ -30,6 +30,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Lifecycle" />
+
+        <Button
+            android:id="@+id/btnLiveData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="LiveData" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
