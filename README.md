@@ -838,5 +838,19 @@ git pull origin master //相当于fetch + merge
     ViewModelProvider.AndroidViewModelFactory(application).create(CounterViewModel::class.java)
     ViewModelProvider(this.viewModelStore,CounterViewModelFactory(3)).get(CounterViewModel::class.java)//自定义Factory
   ```
+* Lifecycle  使用场景：感知Activity声明周期，以便在适当的时候进行逻辑控制
+ 1.创建 Observer:LifecycleObserver
+ 2.@OnLifecycleEvent(Lifecycle.Event.ON_START)定义需要监听的声明周期方法
+ ```
+    @OnLifecycleEvent(Lifecycle.Event.ON_START)
+    fun activityStart(){
+        LogG.loge(TAG,"activityStart")
+    }
+ ```
+ 3.使用LifecycleOwner添加自定义的Observer
+ ```
+    lifecycle.addObserver(MyObserver())
+ ```
+ 4.lifecycle.currentState:获取当前的生命周期状态（INITIALIZED、DESTROYED、CREATED、STARTED、RESUMED）五种状态
 
 
