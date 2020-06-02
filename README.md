@@ -855,24 +855,24 @@ git pull origin master //相当于fetch + merge
 
 * LifeData  响应式编程组件。使用场景：可以包含任何数据类型的数据，并能在数据变化时通知给观察者。ViewModel与LiveData结合使用
  1.MutableLiveData<T> 创建LiveData数据
-   ```
- val counter = MutableLiveData<Int>()
- counter.value = 2//设置LiveData的值
-   ```
+    ```
+    val counter = MutableLiveData<Int>()
+    counter.value = 2//设置LiveData的值
+    ```
  2.LiveData 添加观察者(liveData.observe(lifecycleOwner,Observer))
-   ```
- counter.observe(this, Observer {  })
-   ```
+    ```
+    counter.observe(this, Observer {  })
+    ```
  3.map和switchMap数据转换
  注：map和switchMap是将MutableLiveData<T> 转换为 LiveData<V>
-   ```
- //将LiveData<News>转换为LiveData<String>
- val newsLiveData = MutableLiveData<News>()
- val liveDate:LiveData<String> = Transformations.map(newsLiveData){
+    ```
+    //将LiveData<News>转换为LiveData<String>
+    val newsLiveData = MutableLiveData<News>()
+    val liveDate:LiveData<String> = Transformations.map(newsLiveData){
          user ->"${user.title}:${user.content}"
-  }
-   ```
- 注意1：map将实际包含数据的LiveData和仅用于观察数据的LiveData进行转换
- 注意2：switchMap使用场景固定：ViewModel中某个LiveData对象是调用另外的方法获取的，则可通过switchMap()方法，将这个LiveData转化为另一个可观察的LiveData对象
+    }
+    ```
+   注意1：map将实际包含数据的LiveData和仅用于观察数据的LiveData进行转换
+   注意2：switchMap使用场景固定：ViewModel中某个LiveData对象是调用另外的方法获取的，则可通过switchMap()方法，将这个LiveData转化为另一个可观察的LiveData对象
 
  * ROOM  转为Android数据库设计的ORM框架
