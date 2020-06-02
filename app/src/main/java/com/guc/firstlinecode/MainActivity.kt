@@ -9,6 +9,7 @@ import android.view.View
 import android.view.View.OnClickListener
 import com.guc.firstlinecode.base.BaseActivity
 import com.guc.firstlinecode.ui.*
+import com.guc.firstlinecode.ui.jetpack.JetpackActivity
 import com.guc.firstlinecode.ui.material.MaterialDesignActivity
 import com.guc.firstlinecode.ui.net.NetTechnologyActivity
 import com.guc.firstlinecode.utils.ToastUtil
@@ -38,6 +39,7 @@ class MainActivity : BaseActivity(), OnClickListener {
         button15.setOnClickListener(this)
         button16.setOnClickListener(this)
         button17.setOnClickListener(this)
+        button18.setOnClickListener(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -78,6 +80,7 @@ class MainActivity : BaseActivity(), OnClickListener {
             R.id.button15 -> ServiceActivity.start(this)
             R.id.button16 -> quickStartActivity<NetTechnologyActivity>(this) {}
             R.id.button17 -> quickStartActivity<MaterialDesignActivity>(this) {}
+            R.id.button18 -> quickStartActivity<JetpackActivity>(this) {}
         }
     }
 

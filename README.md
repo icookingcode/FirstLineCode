@@ -830,6 +830,13 @@ git merge origin/master //合并到主分支
 ```
 git pull origin master //相当于fetch + merge
 ```
-
+### Jetpack--程序开发组件
+* ViewModel  使用场景：将数据保留在ViewModel中，手机屏幕旋转时，界面上的数据也不会丢失。 
+ 1. 添加依赖 'androidx.lifecycle:lifecycle-extensions:2.2.0'  
+ 2. 获取ViewModel实例  
+  ```
+    ViewModelProvider.AndroidViewModelFactory(application).create(CounterViewModel::class.java)
+    ViewModelProvider(this.viewModelStore,CounterViewModelFactory(3)).get(CounterViewModel::class.java)//自定义Factory
+  ```
 
 
