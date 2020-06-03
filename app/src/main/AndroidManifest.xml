@@ -25,7 +25,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.jetpack.lifedata.LiveDataActivity"></activity>
+        <activity android:name=".ui.jetpack.RoomActivity"></activity>
+        <activity android:name=".ui.jetpack.livedata.LiveDataActivity" />
         <activity android:name=".ui.jetpack.lifecycle.LifecyclesActivity" />
         <activity android:name=".ui.jetpack.vm.ViewModelActivity" />
         <activity android:name=".ui.jetpack.JetpackActivity" />

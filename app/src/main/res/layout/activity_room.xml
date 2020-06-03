@@ -1,37 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.jetpack.livedata.LiveDataActivity">
+    tools:context=".ui.jetpack.RoomActivity">
 
     <com.guc.firstlinecode.customviews.TitleLayout
         android:id="@+id/titleLayout"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnGetBooks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="查询所有书籍" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvContent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/btnPlusOne"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="plusOne" />
-
-    <Button
-        android:id="@+id/btnClear"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="clear" />
-
-    <TextView
-        android:id="@+id/infoText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="32sp" />
-
-    <Button
-        android:id="@+id/btnGetNews"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="获取新闻" />
 </LinearLayout>

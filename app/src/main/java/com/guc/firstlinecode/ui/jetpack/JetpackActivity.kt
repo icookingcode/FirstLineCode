@@ -5,7 +5,7 @@ import android.view.View
 import com.guc.firstlinecode.R
 import com.guc.firstlinecode.base.BaseActivity
 import com.guc.firstlinecode.ui.jetpack.lifecycle.LifecyclesActivity
-import com.guc.firstlinecode.ui.jetpack.lifedata.LiveDataActivity
+import com.guc.firstlinecode.ui.jetpack.livedata.LiveDataActivity
 import com.guc.firstlinecode.ui.jetpack.vm.ViewModelActivity
 import com.guc.firstlinecode.utils.quickStartActivity
 import kotlinx.android.synthetic.main.activity_jetpack.*
@@ -23,6 +23,7 @@ class JetpackActivity : BaseActivity(), View.OnClickListener {
         btnViewModel.setOnClickListener(this)
         btnLifecycle.setOnClickListener(this)
         btnLiveData.setOnClickListener(this)
+        btnRoom.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -30,6 +31,7 @@ class JetpackActivity : BaseActivity(), View.OnClickListener {
             R.id.btnViewModel -> quickStartActivity<ViewModelActivity>(this) {}
             R.id.btnLifecycle -> quickStartActivity<LifecyclesActivity>(this) {}
             R.id.btnLiveData -> quickStartActivity<LiveDataActivity>(this) {}
+            R.id.btnRoom -> quickStartActivity<RoomActivity>(this) {}
         }
     }
 }

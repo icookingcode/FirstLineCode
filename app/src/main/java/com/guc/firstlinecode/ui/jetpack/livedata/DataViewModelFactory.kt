@@ -1,4 +1,4 @@
-package com.guc.firstlinecode.ui.jetpack.lifedata
+package com.guc.firstlinecode.ui.jetpack.livedata
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
