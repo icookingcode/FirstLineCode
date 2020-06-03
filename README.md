@@ -364,6 +364,13 @@ suspend fun printDot(){
     //取消job作用域下的所有协程
     job.cancel()
 ```
+### 使用DSL(Domain Specific Language)构建专有的语法结构
+DSL(Domain Specific Language):领域特定语言。自己创建语法结构
+* infix 函数构建出来的语法结构
+* 使用高阶函数构建DSL
+1. 使用高阶函数定义依赖库的DSL语法结构
+2. 动态生成表格所对应的的HTML代码
+
 ## Android 
 ### Activity
 * menu 使用  
