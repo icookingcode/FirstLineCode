@@ -948,6 +948,9 @@ git pull origin master //相当于fetch + merge
      .then(upload)
      .enqueue()
  ```
-
+### 高阶技巧
+1. Intent传递对象
+ * Serilizable：MyClass:Serilizable{}
+ * Parcelable: 参考com.guc.firstlinecode.bean.Msg类
 
 

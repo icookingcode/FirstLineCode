@@ -1,10 +1,12 @@
 package com.guc.firstlinecode.bean
 
+import java.io.Serializable
+
 /**
  * Created by guc on 2020/5/6.
  * 描述：书
  */
-class Book(id: Long, name: String, author: String, pages: Int, price: Float) {
+class Book(id: Long, name: String, author: String, pages: Int, price: Float) : Serializable {
     var id: Long = 0
     var name: String = ""
     var author: String = ""
