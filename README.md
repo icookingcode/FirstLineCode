@@ -892,4 +892,55 @@ git pull origin master //相当于fetch + merge
  4. 创建数据库:Database
  5. 数据库升级：通过Database.addMigrations()方法添加升级migration:Migration
 
+* WorkManager:适合处理一些要求定时执行的任务，但在国产手机中可能会非常不稳定
+ 后台相关API变化情况：
+   * 4.4 AlarmManager的触发时间由精准变为不精准
+   * 5.0 加入JobScheduler来处理后台任务
+   * 6.0 引入Doze和App Standby模式用于降低手机被后台唤醒的频率
+   * 8.0 禁用Service的后台功能，只允许使用前台Service
+ 1. 添加依赖
+ ```
+ //WorkManager
+ implementation 'androidx.work:work-runtime:2.3.4'
+ ```
+ 2. 定义后台任务MyWorker:Worker(_,_)，并实现逻辑
+ 3. 构建后台任务请求
+ ```
+ //构建周期性运行的后台任务请求
+  val request = PeriodicWorkRequest.Builder(MyWorker::class.java,15,TimeUnit.SECONDS).build()
+ //构建单次运行的后台任务请求
+      val requestOneTIme = OneTimeWorkRequest.Builder(MyWorker::class.java)
+              .addTag(MyWorker.TAG)
+              .setInitialDelay(30,TimeUnit.SECONDS)  //延时30s执行
+              .setBackoffCriteria(BackoffPolicy.LINEAR,10,TimeUnit.SECONDS)//设置任务重新执行的时间间隔,最少10s
+              .build()
+ ```
+ 4. 将后台任务请求放入WorkManager的enqueue()方法中。
+ ```
+  WorkManager.getInstance(this).enqueue(request)
+ ```
+ 5. 监听任务执行结果
+ ```
+ WorkManager.getInstance(this).getWorkInfoByIdLiveData(requestOneTime.id).observe(this,
+             Observer {
+                 if (it.state == WorkInfo.State.SUCCEEDED) {
+                     LogG.loge(msg = "do work succeed")
+                 } else if (it.state == WorkInfo.State.FAILED) {
+                     LogG.loge(msg = "do work failed")
+                 }
+             })
+ ```
+ 6. 链式任务
+ ```
+ val sync = ..
+ val compress = ..
+ val upload = ..
+ WorkManager.getInstance(this)
+     .beginWith(sync)
+     .then(compress)
+     .then(upload)
+     .enqueue()
+ ```
+
+
 
