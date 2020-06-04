@@ -952,5 +952,23 @@ git pull origin master //相当于fetch + merge
 1. Intent传递对象
  * Serilizable：MyClass:Serilizable{}
  * Parcelable: 参考com.guc.firstlinecode.bean.Msg类
+2. 深色主题（Android 10.0引入）
+ * 强制转换：Force Dark
+ ```
+ //res->values-v29-> <AppTheme> 添加属性
+  <item name="android:forceDarkAllowed">true</item>
+ ```
+ * 手动配置：
+   *  配置主题
+ ```
+ //<AppTheme> 继承 Theme.AppCompat.DayNight.NoActionBar
+ ```
+   * 设置night主题颜色
+ ```
+ //新建 res->values-night->colors.xml 资源文件
+     <color name="colorPrimary">#303030</color>
+     <color name="colorPrimaryDark">#232323</color>
+     <color name="colorAccent">#008577</color>
+ ```
 
 
