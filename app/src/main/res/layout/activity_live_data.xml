@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.jetpack.livedata.LiveDataActivity">
+
+    <com.guc.firstlinecode.customviews.TitleLayout
+        android:id="@+id/titleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btnPlusOne"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="plusOne" />
+
+    <Button
+        android:id="@+id/btnClear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="clear" />
+
+    <TextView
+        android:id="@+id/infoText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="32sp" />
+
+    <Button
+        android:id="@+id/btnGetNews"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="获取新闻" />
+</LinearLayout>

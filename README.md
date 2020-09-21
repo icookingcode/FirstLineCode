@@ -364,6 +364,13 @@ suspend fun printDot(){
     //取消job作用域下的所有协程
     job.cancel()
 ```
+### 使用DSL(Domain Specific Language)构建专有的语法结构
+DSL(Domain Specific Language):领域特定语言。自己创建语法结构
+* infix 函数构建出来的语法结构
+* 使用高阶函数构建DSL
+1. 使用高阶函数定义依赖库的DSL语法结构
+2. 动态生成表格所对应的的HTML代码
+
 ## Android 
 ### Activity
 * menu 使用  
@@ -830,6 +837,138 @@ git merge origin/master //合并到主分支
 ```
 git pull origin master //相当于fetch + merge
 ```
+### Jetpack--程序开发组件
+* ViewModel  使用场景：将数据保留在ViewModel中，手机屏幕旋转时，界面上的数据也不会丢失。  
+ 1. 添加依赖 'androidx.lifecycle:lifecycle-extensions:2.2.0'  
+ 2. 获取ViewModel实例  
+    ```
+    ViewModelProvider.AndroidViewModelFactory(application).create(CounterViewModel::class.java)
+    ViewModelProvider(this.viewModelStore,CounterViewModelFactory(3)).get(CounterViewModel::class.java)//自定义Factory
+    ```
+* Lifecycle  使用场景：感知Activity声明周期，以便在适当的时候进行逻辑控制
+ 1. 创建 Observer:LifecycleObserver
+ 2. @OnLifecycleEvent(Lifecycle.Event.ON_START)定义需要监听的声明周期方法
+    ```
+    @OnLifecycleEvent(Lifecycle.Event.ON_START)
+    fun activityStart(){
+        LogG.loge(TAG,"activityStart")
+    }
+    ```
+ 3. 使用LifecycleOwner添加自定义的Observer
+    ```
+    lifecycle.addObserver(MyObserver())
+    ```
+ 4. lifecycle.currentState:获取当前的生命周期状态（INITIALIZED、DESTROYED、CREATED、STARTED、RESUMED）五种状态
 
+* LifeData  响应式编程组件。使用场景：可以包含任何数据类型的数据，并能在数据变化时通知给观察者。ViewModel与LiveData结合使用
+ 1. MutableLiveData<T> 创建LiveData数据
+    ```
+    val counter = MutableLiveData<Int>()
+    counter.value = 2//设置LiveData的值
+    ```
+ 2. LiveData 添加观察者(liveData.observe(lifecycleOwner,Observer))
+    ```
+    counter.observe(this, Observer {  })
+    ```
+ 3. map和switchMap数据转换
+ 注：map和switchMap是将MutableLiveData<T> 转换为 LiveData<V>
+    ```
+    //将LiveData<News>转换为LiveData<String>
+    val newsLiveData = MutableLiveData<News>()
+    val liveDate:LiveData<String> = Transformations.map(newsLiveData){
+         user ->"${user.title}:${user.content}"
+    }
+    ```
+   注意1：map将实际包含数据的LiveData和仅用于观察数据的LiveData进行转换
+   注意2：switchMap使用场景固定：ViewModel中某个LiveData对象是调用另外的方法获取的，则可通过switchMap()方法，将这个LiveData转化为另一个可观察的LiveData对象
 
+ * ROOM  转为Android数据库设计的ORM框架
+ Room整体结构：
+   * Entity:实际数据的实体
+   * Dao:数据访问对象，对数据库的各项操作进行封装
+   * Database:用于定义数据库中的关键信息
+ 1. 添加依赖
+ ```
+ apply plugin: 'kotlin-kapt'
+  //Room
+  implementation 'androidx.room:room-runtime:2.2.5'
+  kapt 'androidx.room:room-compiler:2.2.5'
+ ```
+ 2. 创建实体:Entity
+ 3. 创建接口:Dao
+ 4. 创建数据库:Database
+ 5. 数据库升级：通过Database.addMigrations()方法添加升级migration:Migration
+
+* WorkManager:适合处理一些要求定时执行的任务，但在国产手机中可能会非常不稳定
+ 后台相关API变化情况：
+   * 4.4 AlarmManager的触发时间由精准变为不精准
+   * 5.0 加入JobScheduler来处理后台任务
+   * 6.0 引入Doze和App Standby模式用于降低手机被后台唤醒的频率
+   * 8.0 禁用Service的后台功能，只允许使用前台Service
+ 1. 添加依赖
+ ```
+ //WorkManager
+ implementation 'androidx.work:work-runtime:2.3.4'
+ ```
+ 2. 定义后台任务MyWorker:Worker(_,_)，并实现逻辑
+ 3. 构建后台任务请求
+ ```
+ //构建周期性运行的后台任务请求
+  val request = PeriodicWorkRequest.Builder(MyWorker::class.java,15,TimeUnit.SECONDS).build()
+ //构建单次运行的后台任务请求
+      val requestOneTIme = OneTimeWorkRequest.Builder(MyWorker::class.java)
+              .addTag(MyWorker.TAG)
+              .setInitialDelay(30,TimeUnit.SECONDS)  //延时30s执行
+              .setBackoffCriteria(BackoffPolicy.LINEAR,10,TimeUnit.SECONDS)//设置任务重新执行的时间间隔,最少10s
+              .build()
+ ```
+ 4. 将后台任务请求放入WorkManager的enqueue()方法中。
+ ```
+  WorkManager.getInstance(this).enqueue(request)
+ ```
+ 5. 监听任务执行结果
+ ```
+ WorkManager.getInstance(this).getWorkInfoByIdLiveData(requestOneTime.id).observe(this,
+             Observer {
+                 if (it.state == WorkInfo.State.SUCCEEDED) {
+                     LogG.loge(msg = "do work succeed")
+                 } else if (it.state == WorkInfo.State.FAILED) {
+                     LogG.loge(msg = "do work failed")
+                 }
+             })
+ ```
+ 6. 链式任务
+ ```
+ val sync = ..
+ val compress = ..
+ val upload = ..
+ WorkManager.getInstance(this)
+     .beginWith(sync)
+     .then(compress)
+     .then(upload)
+     .enqueue()
+ ```
+### 高阶技巧
+1. Intent传递对象
+ * Serilizable：MyClass:Serilizable{}
+ * Parcelable: 参考com.guc.firstlinecode.bean.Msg类
+2. 深色主题（Android 10.0引入）
+ * 强制转换：Force Dark
+ ```
+ //res->values-v29-> <AppTheme> 添加属性
+  <item name="android:forceDarkAllowed">true</item>
+ ```
+ * 手动配置：
+   *  配置主题
+ ```
+ //<AppTheme> 继承 Theme.AppCompat.DayNight.NoActionBar
+ ```
+   * 设置night主题颜色
+ ```
+ //新建 res->values-night->colors.xml 资源文件
+     <color name="colorPrimary">#303030</color>
+     <color name="colorPrimaryDark">#232323</color>
+     <color name="colorAccent">#008577</color>
+ ```
+### Kotlin项目框架：[KotlinFrame](https://github.com/icookingcode/KotlinFrame)
 
